@@ -8,6 +8,7 @@ package pl.lodz.p.it.spjava.sop8.model;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,7 +23,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author XXX
  */
-@MappedSuperclass
+@Entity
+//@MappedSuperclass
 @Table(catalog = "", schema = "SOP")
 @XmlRootElement
 public class Personaldata implements Serializable {

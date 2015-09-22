@@ -5,30 +5,20 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-        <h:outputStylesheet name="css/jsfcrud.css"/>
-    </h:head>
-    <h:body>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="../templates/MainTemplate.xhtml">
 
+    <ui:define name="top">
+        <p>${msg["main.page"]}</p>
+    </ui:define>
 
-        <h:outputText value="#{msg.PerformanceAppraisalSystem}"/>
+    <ui:define name="left">
+        <ui:include src="../templates/menu.xhtml" />
+    </ui:define>
 
-        <br />
-        <br />
-        <h:link outcome="/account/List" value="#{msg.ShowAllAccountItems}"/>
-        <br />
-        <h:link outcome="/enote/List" value="Show All Enote Items"/>
-        <br />
-        <h:link outcome="/mnote/List" value="Show All Mnote Items"/>
-        <br />
-        <h:link outcome="/team/List" value="Show All Team Items"/>
-    </h:body>
+    <ui:define name="content">
+        Przykładowa aplikacja - UNDER CONSTRUCTION<br />
+    </ui:define>
 
-
-
-
-</html>
-
+</ui:composition>

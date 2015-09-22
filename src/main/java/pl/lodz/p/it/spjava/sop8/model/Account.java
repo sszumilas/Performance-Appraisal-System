@@ -7,6 +7,7 @@ package pl.lodz.p.it.spjava.sop8.model;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.*;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

@@ -1,25 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
 <resources>
+    <jdbc-resource enabled="true" jndi-name="jdbc/SOPJDBCJavaDB" object-type="user" pool-name="SOPPoolJavaDB">
+        <description/>
+    </jdbc-resource>
     <jdbc-connection-pool allow-non-component-callers="false" associate-with-thread="false" connection-creation-retry-attempts="0" connection-creation-retry-interval-in-seconds="10" connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" connection-validation-method="auto-commit" datasource-classname="org.apache.derby.jdbc.ClientDataSource" fail-all-connections="false" idle-timeout-in-seconds="300" is-connection-validation-required="false" is-isolation-level-guaranteed="true" lazy-connection-association="false" lazy-connection-enlistment="false" match-connections="false" max-connection-usage-count="0" max-pool-size="32" max-wait-time-in-millis="60000" name="derby_net_SOP_sopPool" non-transactional-connections="false" pool-resize-quantity="2" res-type="javax.sql.DataSource" statement-timeout-in-seconds="-1" steady-pool-size="8" validate-atmost-once-period-in-seconds="0" wrap-jdbc-objects="false">
+        <description />
+        <property name="URL" value="jdbc:derby://localhost:1527/SOP"/>
         <property name="serverName" value="localhost"/>
         <property name="portNumber" value="1527"/>
         <property name="databaseName" value="SOP"/>
         <property name="User" value="sop"/>
         <property name="Password" value="sop"/>
-        <property name="URL" value="jdbc:derby://localhost:1527/SOP"/>
-        <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
     </jdbc-connection-pool>
-    <jdbc-resource enabled="true" jndi-name="SopJDBCJavaDB_PU" object-type="user" pool-name="derby_net_SOP_sopPool"/>
+    
+    <jdbc-resource enabled="true" jndi-name="jdbc/JDBCRealmDSJavaDB" object-type="user" pool-name="JDBCRealmPoolJavaDB">
+    <description/>
+  </jdbc-resource>
+  <jdbc-connection-pool allow-non-component-callers="false" associate-with-thread="false" connection-creation-retry-attempts="0" connection-creation-retry-interval-in-seconds="10" connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" connection-validation-method="auto-commit" datasource-classname="org.apache.derby.jdbc.ClientDataSource" fail-all-connections="false" idle-timeout-in-seconds="300" is-connection-validation-required="false" is-isolation-level-guaranteed="true" transaction-isolation-level="read-committed" lazy-connection-association="false" lazy-connection-enlistment="false" match-connections="false" max-connection-usage-count="0" max-pool-size="32" max-wait-time-in-millis="60000" name="JDBCRealmPoolJavaDB" non-transactional-connections="false" ping="false" pool-resize-quantity="2" pooling="true" res-type="javax.sql.DataSource" statement-cache-size="0" statement-leak-reclaim="false" statement-leak-timeout-in-seconds="0" statement-timeout-in-seconds="-1" steady-pool-size="8" validate-atmost-once-period-in-seconds="0" wrap-jdbc-objects="false">
+    <description />
+    <property name="URL" value="jdbc:derby://localhost:1527/SOP"/>
+    <property name="serverName" value="localhost"/>
+    <property name="PortNumber" value="1527"/>
+    <property name="DatabaseName" value="SOP"/>
+    <property name="User" value="sop"/>
+    <property name="Password" value="sop"/>
+  </jdbc-connection-pool>
+  
+    <jdbc-resource enabled="true" jndi-name="jdbc/SOPJDBCJavaDB_Serializable" object-type="user" pool-name="SOPPoolJavaDB_Serializable">
+        <description />
+        </jdbc-resource>
     <jdbc-connection-pool allow-non-component-callers="false" associate-with-thread="false" connection-creation-retry-attempts="0" connection-creation-retry-interval-in-seconds="10" connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" connection-validation-method="auto-commit" datasource-classname="org.apache.derby.jdbc.ClientDataSource" fail-all-connections="false" idle-timeout-in-seconds="300" is-connection-validation-required="false" is-isolation-level-guaranteed="true" lazy-connection-association="false" lazy-connection-enlistment="false" match-connections="false" max-connection-usage-count="0" max-pool-size="32" max-wait-time-in-millis="60000" name="derby_net_sop_sopPool" non-transactional-connections="false" pool-resize-quantity="2" res-type="javax.sql.DataSource" statement-timeout-in-seconds="-1" steady-pool-size="8" validate-atmost-once-period-in-seconds="0" wrap-jdbc-objects="false">
+        <description />
+        <property name="URL" value="jdbc:derby://localhost:1527/SOP"/>
         <property name="serverName" value="localhost"/>
         <property name="portNumber" value="1527"/>
-        <property name="databaseName" value="sop"/>
+        <property name="databaseName" value="SOP"/>
         <property name="User" value="sop"/>
         <property name="Password" value="sop"/>
-        <property name="URL" value="jdbc:derby://localhost:1527/sop"/>
-        <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
     </jdbc-connection-pool>
-    <jdbc-resource enabled="true" jndi-name="SopJDBC" object-type="user" pool-name="derby_net_sop_sopPool"/>
-    <jdbc-resource enabled="true" jndi-name="SopJDBCJavaDB" object-type="user" pool-name="derby_net_sop_sopPool"/>
 </resources>

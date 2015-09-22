@@ -8,6 +8,7 @@ package pl.lodz.p.it.spjava.sop8.model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author XXX
  */
 @Entity
+@Cacheable(false)
 @Table(catalog = "", schema = "SOP")
 @XmlRootElement
 public class Enote implements Serializable {
@@ -188,6 +190,22 @@ public class Enote implements Serializable {
     @Override
     public String toString() {
         return "pl.lodz.p.it.spjava.Enote[ id=" + id + " ]";
+    }
+
+    public boolean isConfirmed() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setWhoCreate(Employee myAccountEmployee) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setWhoConfirmed(Manager myAccountManager) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setConfirmed(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

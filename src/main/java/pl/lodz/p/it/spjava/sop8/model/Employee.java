@@ -29,10 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 //@XmlRootElement
 
 
-@DiscriminatorValue("KLIENT")
+@DiscriminatorValue("EMPLOYEE")
 @NamedQueries({
-    @NamedQuery(name = "Klient.findAll", query = "SELECT d FROM Klient d"),
-    @NamedQuery(name = "Klient.findByLogin", query = "SELECT d FROM Klient d WHERE d.login = :login")
+    @NamedQuery(name = "Employee.findAll", query = "SELECT d FROM Employee d"),
+    @NamedQuery(name = "Employee.findByLogin", query = "SELECT d FROM Employee d WHERE d.login = :login")
 })
 public class Employee extends Account implements Serializable {
 
@@ -81,6 +81,10 @@ public class Employee extends Account implements Serializable {
     public void setNip(String nip) {
         this.nip = nip;
         
+    }
+
+    public Object getEnotes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 
