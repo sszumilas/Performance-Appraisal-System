@@ -16,10 +16,11 @@
 
 #left {
     float: left;
-    background-color: #ece3a5;
+    background-color: #c2dfef;
     padding: 5px;
-    width: 150px;
+    width: 350px;
     min-height: 480px;
+    margin: 0px 0px 0px 0px;
 }
 
 #right {

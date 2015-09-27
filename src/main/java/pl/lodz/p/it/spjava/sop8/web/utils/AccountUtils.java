@@ -72,13 +72,13 @@ public class AccountUtils {
         if (isEmployee(source) && isEmployee(target)) {
             Employee sourceEmployee = (Employee) source;
             Employee targetEmployee = (Employee) target;
-            targetEmployee.setNip(sourceEmployee.getNip());
+//            targetEmployee.setNip(sourceEmployee.getNip());
         }
     }
 
-    public static String wyliczSkrotHasla(String hasloJawne) {
+    public static String calculateHashPassword(String passwordVisible) {
         //TODO: wstawić algorytm skrótu hasła
-        return hasloJawne;
+        return passwordVisible;
     }
 
 }

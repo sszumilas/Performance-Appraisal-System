@@ -52,14 +52,14 @@ public class AccountEndpoint extends AbstractEndpoint implements SessionSynchron
         account.setActive(true);
         account.setConfirmed(true);
         // Konto ma hasło jawne podane w formularzu, należy je przeliczyć na skrót
-        account.setPassword(AccountUtils.wyliczSkrotHasla(account.getPassword()));
+        account.setPassword(AccountUtils.calculateHashPassword(account.getPassword()));
         accountFacade.create(account);
     }
 
     public void registerEmployee(Employee employee) throws AppBaseException {
         employee.setActive(true);
         employee.setConfirmed(false);
-        employee.setPassword(AccountUtils.wyliczSkrotHasla(employee.getPassword()));
+        employee.setPassword(AccountUtils.calculateHashPassword(employee.getPassword()));
         employeeFacade.create(employee);
     }
     
@@ -110,15 +110,15 @@ public class AccountEndpoint extends AbstractEndpoint implements SessionSynchron
         accountState=null;
     }
     
-//    public void changeMyPassword(String old, String new) {
-//        Account myAccount = getMyAccount();
-//        if(!myAccount.getPassword().equals(AccountUtils.wyliczSkrotHasla(old)))
-//            throw new IllegalArgumentException("Podane dotychczasowe hasło nie zgadza się");
-//        myAccount.setPassword(AccountUtils.wyliczSkrotHasla(new));
-//    }
-//    
-//    public void changePassword(Account account, String password) {
-//        Account a = accountFacade.find(account.getId());
-//        a.setPassword(AccountUtils.wyliczSkrotHasla(password));
-//    }
+        public void changeMyPassword(String old, String neu) {
+        Account myAccount = getMyAccount();
+        if(!myAccount.getPassword().equals(AccountUtils.calculateHashPassword(old)))
+            throw new IllegalArgumentException("Podane dotychczasowe hasło nie zgadza się");
+        myAccount.setPassword(AccountUtils.calculateHashPassword(neu));
+    }
+    
+    public void changePassword(Account account, String password) {
+        Account a = accountFacade.find(account.getId());
+        a.setPassword(AccountUtils.calculateHashPassword(password));
+    }
 }

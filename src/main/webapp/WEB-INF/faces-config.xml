@@ -40,6 +40,46 @@
             <from-outcome>cancelAction</from-outcome>
             <to-view-id>/main/index.xhtml</to-view-id>
             <redirect />
+             </navigation-case>        
+        <navigation-case>
+            <from-outcome>confirmRegister</from-outcome>
+            <to-view-id>/account/registerEmployeeConfirm.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>editAccount</from-outcome>
+            <to-view-id>/account/editAccount.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>changePassword</from-outcome>
+            <to-view-id>/account/changePasswordAccount.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>listAccounts</from-outcome>
+            <to-view-id>/account/listAccounts.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>confirmEnote</from-outcome>
+            <to-view-id>/enote/confirmEnote.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>deleteEnote</from-outcome>
+            <to-view-id>/enote/deleteEnote.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>createEnote</from-outcome>
+            <to-view-id>/enote/createEnote.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/common/success.xhtml</to-view-id>
+            <redirect />
         </navigation-case>
             </navigation-rule>
         

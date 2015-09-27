@@ -7,7 +7,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
     
-    <ui:param name="pageBean" value="#{utworzAdministratoraPageBean}" />
+    <ui:param name="pageBean" value="#{createAdminPageBean}" />
 
     <ui:define name="top">
         <p>${msg["main.page"]}/${msg["menu.accounts.createadmin"]}</p>
@@ -17,21 +17,21 @@
         <ui:include src="../templates/menu.xhtml" />
     </ui:define>
     <ui:define name="content">
-        <h:form id="utworzAdministratoraForm" prependId="false">
+        <h:form id="createAdminForm" prependId="false">
             <h:panelGrid columns="3">
 
                 <ui:include src="templateLoginEdit.xhtml"/>
-                <ui:include src="templateHasloEdit.xhtml"/>
+                <ui:include src="templatePasswordEdit.xhtml"/>
 
-                <ui:include src="templateDaneWspolneEdit.xhtml"/>
+                <ui:include src="templateDataCommonEdit.xhtml"/>
 
-                <ui:include src="templateDaneAdministratoraEdit.xhtml"/>
+                <ui:include src="templateDataAdminEdit.xhtml"/>
 
             </h:panelGrid>
 
             <br />
             
-            <h:commandButton action="#{utworzAdministratoraPageBean.utworz}" value="#{msg['action.create']}" />
+            <h:commandButton action="#{createAdminPageBean.create}" value="#{msg['action.create']}" />
             <br />
             <h:commandButton value="#{msg['action.cancel']}" action="cancelAction" immediate="true" />
         </h:form>

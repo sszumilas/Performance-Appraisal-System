@@ -184,15 +184,15 @@ public class AccountSession implements Serializable {
         return "success";
     }
 
-//    public String changePasswordAccount(String password) {
-//        accountEndpoint.changePassword(accountChangePassword, password);
-//        return "success";
-//    }
+    public String changePasswordAccount(String password) {
+        accountEndpoint.changePassword(accountChangePassword, password);
+        return "success";
+    }
 
-//    public String changeMyPassword(String old, String new) {
-//        accountEndpoint.changeMyPassword(old, new);
-//        return "success";
-//    }
+    public String changeMyPassword(String old, String neu) {
+        accountEndpoint.changeMyPassword(old, neu);
+        return "success";
+    }
 
     public List<Account> getAllAccounts() {
         return accountEndpoint.getAllAccounts();

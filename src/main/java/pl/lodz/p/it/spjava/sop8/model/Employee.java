@@ -82,6 +82,27 @@ public class Employee extends Account implements Serializable {
         this.nip = nip;
         
     }
+    
+        public String phone;
+
+    /**
+     * Get the value of phone
+     *
+     * @return the value of phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * Set the value of phone
+     *
+     * @param phone new value of phone
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
 
     public Object getEnotes() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

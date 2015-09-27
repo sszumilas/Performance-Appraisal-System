@@ -15,9 +15,10 @@
                 <li><h:outputLink value="../account/createManager.xhtml" >${msg["menu.accounts.createmanager"]}</h:outputLink></li>
                 <li><h:outputLink value="../account/createAdmin.xhtml" >${msg["menu.accounts.createadmin"]}</h:outputLink></li>
             </ul>
-            <li>${msg["menu.enotes"]}</li>
+            <li>${msg["menu.notes"]}</li>
             <ul>
                 <li><h:outputLink value="../enote/enotesList.xhtml" >${msg["menu.enotes.list"]}</h:outputLink></li>
+                <li><h:outputLink value="../mnote/mnotesList.xhtml" >${msg["menu.mnotes.list"]}</h:outputLink></li>
                 <li><h:outputLink value="../enote/editEnote.xhtml" rendered="#{zamowienieSession.zamowienieSkladanieNiepuste}">${msg["menu.order.my"]}</h:outputLink></li>
             </ul>
             <li>Login: ${accountSession.myLogin}</li>
