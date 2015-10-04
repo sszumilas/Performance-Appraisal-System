@@ -13,7 +13,7 @@
         <application>
         <locale-config>
             <default-locale>en</default-locale>
-            <supported-locale></supported-locale>
+            <supported-locale>pl</supported-locale>
             <supported-locale>en</supported-locale>
         </locale-config>
         <resource-bundle>
@@ -57,8 +57,8 @@
             <redirect />
         </navigation-case>        
         <navigation-case>
-            <from-outcome>listAccounts</from-outcome>
-            <to-view-id>/account/listAccounts.xhtml</to-view-id>
+            <from-outcome>accountsList</from-outcome>
+            <to-view-id>/account/accountsList.xhtml</to-view-id>
             <redirect />
         </navigation-case>        
         <navigation-case>

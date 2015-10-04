@@ -34,7 +34,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "Account")
 
 @SecondaryTable(name = "PersonalData")
-@TableGenerator(name = "AccountIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Account", initialValue = 100)
+@TableGenerator(name = "AccountIdGen", table = "GENERATOR", 
+        pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", 
+        pkColumnValue = "Account", initialValue = 100)
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type")
 @DiscriminatorValue("ACCOUNT")
@@ -51,17 +53,22 @@ public class Account extends AbstractEntity implements Serializable {
 //    private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "id", updatable = false)
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "AccountIdGen")
+    @GeneratedValue(strategy = GenerationType.TABLE, 
+            generator = "AccountIdGen")
     private Long id;
-
-    @Column(name = "login", length = 32, nullable = false, unique = true, updatable = false)
-    private String login;
 
     @NotNull(message = "{constraint.notnull}")
     @Size(min = 6, message = "{constraint.string.length.tooshort}")
-    @Column(name = "password", length = 256, nullable = false)
+    @Column(name = "login", length = 32, nullable = false, unique = true, 
+            updatable = false)
+    private String login;
+    
+    @NotNull(message = "{constraint.notnull}")
+    @Size(min = 6, message = "{constraint.string.length.tooshort}")
+    @Column(name = "password", length = 32, nullable = false)
     private String password;
 
+    
     @Column(name = "confirmed", nullable = false)
     private boolean confirmed;
 

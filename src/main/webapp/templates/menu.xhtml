@@ -17,9 +17,10 @@
             </ul>
             <li>${msg["menu.notes"]}</li>
             <ul>
-                <li><h:outputLink value="../enote/enotesList.xhtml" >${msg["menu.enotes.list"]}</h:outputLink></li>
-                <li><h:outputLink value="../mnote/mnotesList.xhtml" >${msg["menu.mnotes.list"]}</h:outputLink></li>
-                <li><h:outputLink value="../enote/editEnote.xhtml" rendered="#{zamowienieSession.zamowienieSkladanieNiepuste}">${msg["menu.order.my"]}</h:outputLink></li>
+                <li><h:outputLink value="../enote/enoteList.xhtml" >${msg["menu.enote.list"]}</h:outputLink></li>
+                <li><h:outputLink value="../mnote/mnoteList.xhtml" >${msg["menu.mnote.list"]}</h:outputLink></li>
+                <li><h:outputLink value="../enote/editEnote.xhtml" >${msg["menu.enote.edit"]}</h:outputLink></li>
+                <li><h:outputLink value="../enote/create.xhtml" >${msg["menu.enote.create"]}</h:outputLink></li>
             </ul>
             <li>Login: ${accountSession.myLogin}</li>
         </ul>

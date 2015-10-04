@@ -14,8 +14,8 @@
         <ui:include src="../templates/menu.xhtml" />
     </ui:define>
     <ui:define name="content">
-        <h:form id="listaKontForm">
-            <h:messages for="ListaKont"/>
+        <h:form id="accountsListForm">
+            <h:messages for="AccountList"/>
             <h:panelGrid columns="3">
             <h:outputLabel for="matchLogin" value="#{msg['account.matchByLogin']}"/><h:inputText id="matchLogin" value="#{accountsListPageBean.requestLogin}" /><h:commandButton value="#{msg['action.refresh']}" action="#{accountsListPageBean.refresh()}" />
             <h:outputLabel for="matchName" value="#{msg['account.matchByName']}"/><h:inputText id="matchName" value="#{accountsListPageBean.requestName}" /><h:commandButton value="#{msg['action.reset']}" action="#{accountsListPageBean.reset()}" />

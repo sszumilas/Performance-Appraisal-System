@@ -7,22 +7,22 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="top">
-        <p>${msg["main.page"]}/${msg["menu.enotes.list"]}</p>
+        <p>${msg["main.page"]}/${msg["menu.enote.list"]}</p>
     </ui:define>
 
     <ui:define name="left">
         <ui:include src="../templates/menu.xhtml" />
     </ui:define>
     <ui:define name="content">
-        <h:form id="enotesListForm">
-            <h:messages for="enotesList" />
-            <h:selectBooleanCheckbox id="confirmedOnly" value="#{enotesListPageBean.notConfirmedOnly}" /><h:outputLabel for="confirmedOnly" value="#{msg['enote.notConfirmedOnly']}" />
-            <h:commandButton value="#{msg['action.refresh']}" action="#{enotesListPageBean.refresh()}"/>
-            <h:dataTable id="enotesList" var="row" value="#{enotesListPageBean.enotesDataModel}" headerClass="table_header" rowClasses="row_odd,row_even">
-                <ui:include src="templateEnotesList.xhtml" />
+        <h:form id="enoteListForm">
+            <h:messages for="enoteList" />
+            <h:selectBooleanCheckbox id="confirmedOnly" value="#{enoteListPageBean.notConfirmedOnly}" /><h:outputLabel for="confirmedOnly" value="#{msg['enote.notConfirmedOnly']}" />
+            <h:commandButton value="#{msg['action.refresh']}" action="#{enoteListPageBean.refresh()}"/>
+            <h:dataTable id="enoteList" var="row" value="#{enoteListPageBean.enoteDataModel}" headerClass="table_header" rowClasses="row_odd,row_even">
+                <ui:include src="templateEnoteList.xhtml" />
                 <h:column id="actions">
                     <f:facet name="header">${msg['general.actions']}</f:facet>
-                    <h:commandButton action="#{enotesListPageBean.deleteSelectedEnote()}" value="${msg['action.delete']}" rendered="#{not row.confirmed}"/>
+                    <h:commandButton action="#{enoteListPageBean.deleteSelectedEnote()}" value="${msg['action.delete']}" rendered="#{not row.confirmed}"/>
                 </h:column>
 
 

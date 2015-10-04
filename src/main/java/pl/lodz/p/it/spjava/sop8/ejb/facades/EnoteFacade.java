@@ -30,7 +30,7 @@ public class EnoteFacade extends AbstractFacade<Enote> {
         super(Enote.class);
     }
     
-    public List<Enote> findEnotesNotConfirmed() {
+    public List<Enote> findEnoteNotConfirmed() {
         TypedQuery<Enote> tq = em.createNamedQuery("Enote.findNotConfirmed", Enote.class);
         return tq.getResultList();
     }

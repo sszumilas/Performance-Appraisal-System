@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{msg.ListEnoteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{msg.ListEnoteEmpty}" rendered="#{enoteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{enoteController.items.rowCount > 0}">
+                    <h:outputText value="#{enoteController.pagination.pageFirstItem + 1}..#{enoteController.pagination.pageLastItem + 1}/#{enoteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{enoteController.previous}" value="#{msg.Previous} #{enoteController.pagination.pageSize}" rendered="#{enoteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{enoteController.next}" value="#{msg.Next} #{enoteController.pagination.pageSize}" rendered="#{enoteController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{enoteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.ListEnoteTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.ListEnoteTitle_achievements}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.achievements}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.ListEnoteTitle_aspiration}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aspiration}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.ListEnoteTitle_date}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.ListEnoteTitle_improvement}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.improvement}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.ListEnoteTitle_mobility}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mobility}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.ListEnoteTitle_nactivity}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nactivity}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.ListEnoteTitle_promises}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.promises}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.ListEnoteTitle_target}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.target}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{enoteController.prepareView}" value="#{msg.ListEnoteViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{enoteController.prepareEdit}" value="#{msg.ListEnoteEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{enoteController.destroy}" value="#{msg.ListEnoteDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{enoteController.prepareCreate}" value="#{msg.ListEnoteCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{msg.ListEnoteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -2,6 +2,7 @@
 package pl.lodz.p.it.spjava.sop8.ejb.endpoints;
 
 import java.util.List;
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;

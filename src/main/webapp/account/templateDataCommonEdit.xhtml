@@ -27,12 +27,12 @@
     </h:inputText>
     <h:message for="email" />
 
-    <h:outputLabel value="#{msg['account.phone']}" for="phone" />
-    <h:inputText id="phone" value="#{pageBean.account.telephone}" title="#{msg['account.phone']}" required="false" >
+    <h:outputLabel value="#{msg['account.telephone']}" for="telephone" />
+    <h:inputText id="telephone" value="#{pageBean.account.telephone}" title="#{msg['account.telephone']}" required="false" >
         <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
         <!--<f:validateLength maximum="12" />-->
     </h:inputText>
 
-    <h:message for="phone" />
+    <h:message for="telephone" />
 
 </ui:composition>

@@ -41,10 +41,10 @@ public class Employee extends Account implements Serializable {
     
     
     
-    @NotNull
-    @Pattern(regexp="^[0-9]{10}$",message="{constraint.string.incorrectNIP}")
-    @Column(name = "nip", unique=true, nullable=false, length=10)
-    private String nip;
+//    @NotNull
+//    @Pattern(regexp="^[0-9]{10}$",message="{constraint.string.incorrectNIP}")
+//    @Column(name = "nip", unique=true, nullable=false, length=10)
+//    private String nip;
     
 //    @OneToMany(mappedBy = "ktoZlozyl")
 //    private List<Zamowienie> zamowienia = new ArrayList<Zamowienie>();
@@ -74,37 +74,37 @@ public class Employee extends Account implements Serializable {
     public Employee() {
     }
 
-    public String getNip() {
-        return nip;
-    }
-
-    public void setNip(String nip) {
-        this.nip = nip;
-        
-    }
+//    public String getNip() {
+//        return nip;
+//    }
+//
+//    public void setNip(String nip) {
+//        this.nip = nip;
+//        
+//    }
     
-        public String phone;
+        public String telephone;
 
     /**
-     * Get the value of phone
+     * Get the value of telephone
      *
-     * @return the value of phone
+     * @return the value of telephone
      */
-    public String getPhone() {
-        return phone;
+    public String getTelephone() {
+        return telephone;
     }
 
     /**
-     * Set the value of phone
+     * Set the value of telephone
      *
-     * @param phone new value of phone
+     * @param telephone new value of telephone
      */
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
 
-    public Object getEnotes() {
+    public Object getEnote() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

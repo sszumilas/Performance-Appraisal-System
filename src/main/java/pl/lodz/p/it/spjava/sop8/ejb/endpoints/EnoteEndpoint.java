@@ -71,15 +71,15 @@ public class EnoteEndpoint extends AbstractEndpoint implements SessionSynchroniz
 //        enoteFacade.odswiezCenyProduktow(enote);
 //    }
     
-    public List<Enote> getAllEnotes() {
+    public List<Enote> getAllEnote() {
         return enoteFacade.findAll();
     }
     
-    public List<Enote> getEnotesNotConfirmed() {
-        return enoteFacade.findEnotesNotConfirmed();
+    public List<Enote> getEnoteNotConfirmed() {
+        return enoteFacade.findEnoteNotConfirmed();
     }
     
-//    public List<Enote> getMyEnotes() {
+//    public List<Enote> getMyEnote() {
 //        return enoteFacade.znajdzZamowieniaDlaKlienta(accountEndpoint.getMyAccount().getLogin());
 //    }
 //

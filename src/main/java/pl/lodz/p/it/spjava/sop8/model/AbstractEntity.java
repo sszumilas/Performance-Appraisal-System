@@ -26,7 +26,8 @@ public abstract class AbstractEntity {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + "[id=" + getId() + ", key=" + getBusinessKey() + ", version=" + version + "]";
+        return this.getClass().getSimpleName() + "[id=" + getId() + 
+                ", key=" + getBusinessKey() + ", version=" + version + "]";
     }
 
     @Override

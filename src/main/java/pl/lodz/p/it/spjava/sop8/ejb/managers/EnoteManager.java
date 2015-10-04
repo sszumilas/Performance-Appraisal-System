@@ -38,7 +38,7 @@ public class EnoteManager {
         }
         Employee myAccountEmployee = (Employee) myAccount;
         enote.setWhoCreate(myAccountEmployee);
-//        myAccountEmployee.getEnotes().add(enote);
+//        myAccountEmployee.getEnote().add(enote);
         enoteFacade.create(enote);//dzięki kaskadzie PERSIST powinny być utworzone także pozycje zamówienia
     }
 
