@@ -13,6 +13,7 @@ import pl.lodz.p.it.spjava.sop8.exception.AccountException;
 import pl.lodz.p.it.spjava.sop8.model.Admin;
 import pl.lodz.p.it.spjava.sop8.model.Employee;
 import pl.lodz.p.it.spjava.sop8.model.Account;
+import pl.lodz.p.it.spjava.sop8.model.Enote;
 import pl.lodz.p.it.spjava.sop8.model.Manager;
 import pl.lodz.p.it.spjava.sop8.web.utils.ContextUtils;
 
@@ -23,6 +24,10 @@ import pl.lodz.p.it.spjava.sop8.web.utils.ContextUtils;
 @ManagedBean(name = "accountSession")
 @SessionScoped
 public class AccountSession implements Serializable {
+
+    static String saveAccountEdit(Account account) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @EJB
     private AccountEndpoint accountEndpoint;
@@ -137,6 +142,10 @@ public class AccountSession implements Serializable {
         this.accountChangePassword = account;
         return "changePassword";
     }
+//    public String createEnote(Enote enote) {
+//        this.createEnote = enote;
+//        return "createEnote";
+//    }
 
     public String registerEmployee() {
         try {
@@ -204,5 +213,13 @@ public class AccountSession implements Serializable {
 
     public Account getMyAccount() {
         return accountEndpoint.getMyAccount();
+    }
+
+    String createEnote(Account rowData) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    String createMnote(Account rowData) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

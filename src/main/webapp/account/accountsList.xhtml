@@ -17,16 +17,16 @@
         <h:form id="accountsListForm">
             <h:messages for="AccountList"/>
             <h:panelGrid columns="3">
-            <h:outputLabel for="matchLogin" value="#{msg['account.matchByLogin']}"/><h:inputText id="matchLogin" value="#{accountsListPageBean.requestLogin}" /><h:commandButton value="#{msg['action.refresh']}" action="#{accountsListPageBean.refresh()}" />
+            <!--<h:outputLabel for="matchLogin" value="#{msg['account.matchByLogin']}"/><h:inputText id="matchLogin" value="#{accountsListPageBean.requestLogin}" /><h:commandButton value="#{msg['action.refresh']}" action="#{accountsListPageBean.refresh()}" />-->
             <h:outputLabel for="matchName" value="#{msg['account.matchByName']}"/><h:inputText id="matchName" value="#{accountsListPageBean.requestName}" /><h:commandButton value="#{msg['action.reset']}" action="#{accountsListPageBean.reset()}" />
             <h:outputLabel for="matchSurname" value="#{msg['account.matchBySurname']}"/><h:inputText id="matchSurname" value="#{accountsListPageBean.requestSurname}" /><h:column />
             <h:outputLabel for="matchEmail" value="#{msg['account.matchByEmail']}"/><h:inputText id="matchEmail" value="#{accountsListPageBean.requestEmail}" /><h:column />
             </h:panelGrid>
             <h:dataTable id="accountsList" var="row" value="#{accountsListPageBean.accountsDataModel}" headerClass="table_header" rowClasses="row_odd,row_even">
-                <h:column id="login">
+<!--                <h:column id="login">
                     <f:facet name="header">${msg['account.login']}</f:facet>
                     <h:outputText value="#{row.login}" />
-                </h:column>
+                </h:column>-->
                 <h:column id="name">
                     <f:facet name="header">${msg['account.name']}</f:facet>
                     <h:outputText value="#{row.name}" />
@@ -59,9 +59,11 @@
                     <f:facet name="header">${msg['general.actions']}</f:facet>
                     <h:commandButton action="#{accountsListPageBean.editAccount()}" value="${msg['action.edit']}"/>
                     <h:commandButton action="#{accountsListPageBean.beginChangePassword()}" value="${msg['menu.accounts.changePassword']}"/>
+                    <h:commandButton action="#{accountsListPageBean.confirmAccount()}" value="${msg['action.confirm']}" rendered="#{not row.active}"/>
                     <h:commandButton action="#{accountsListPageBean.activateAccount()}" value="${msg['action.activate']}" rendered="#{not row.active}"/>
                     <h:commandButton action="#{accountsListPageBean.deactivateAccount}" value="${msg['action.deactivate']}" rendered="#{row.active}"/>
-                    <h:commandButton action="#{accountsListPageBean.confirmAccount}" value="${msg['action.confirm']}" rendered="#{not row.confirmed}"/>
+                    <h:commandButton action="#{accountsListPageBean.createMnote}" value="${msg['action.createMnote']}" rendered="#{row.active}"/>
+                    
                 </h:column>
                                 
                 

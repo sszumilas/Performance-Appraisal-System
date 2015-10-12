@@ -58,13 +58,13 @@ public class Employee extends Account implements Serializable {
     @OneToOne(optional = false)
     private Account account;
     
-                    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+//                    public Account getAccount() {
+//        return account;
+//    }
+//
+//    public void setAccount(Account account) {
+//        this.account = account;
+//    }
     
     
     

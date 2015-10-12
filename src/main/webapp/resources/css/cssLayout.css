@@ -1,22 +1,28 @@
 
 #top {
     position: relative;
-    background-color: #036fab;
-    color: white;
+    background: rgba(255,255,255,0.7);
+    color: black;
     padding: 5px;
     margin: 0px 0px 10px 0px;
 }
 
 #bottom {
     position: relative;
-    background-color: #c2dfef;
+    background: rgba(255,255,255,0.7);
+    background-color: #AFAFAF;
+    color: black;
     padding: 5px;
     margin: 10px 0px 0px 0px;
+    text-shadow: 50; 
 }
 
 #left {
     float: left;
-    background-color: #c2dfef;
+   
+    background:  rgba(255,255,255,0.7);
+/*background-color: #327dff;*/
+/*    color: #ece3a5;*/
     padding: 5px;
     width: 350px;
     min-height: 480px;
@@ -24,30 +30,47 @@
 }
 
 #right {
-    float: right;
-    background-color: #ece3a5;
-    padding: 5px;
-    width: 150px;
+    
+    
+        background: rgba(255,255,255,0.7);
+        color: black;
+    background-position: 40% 50%;
+    background-size: 10em 10em;
+    background-repeat: round round;
+    background-clip: border-box;
+    background-origin: border-box;
+    background-attachment: fixed;
+    background-image: url(chess.png)
+    
+/*    float: right;
+    
+    background-image:  url("https://31.media.tumblr.com/3e3054b3fd9aed599ddd605d1abad067/tumblr_inline_myugv8tsoz1s523bx.jpg")*/
+/*    background-color: #ece3a5;*/
+/*    padding: 5px;
+    width: 150px;*/
 }
 
 .center_content {
     position: relative;
-    background-color: #dddddd;
+    background-color: rgba(255,255,255,0.7);;
     padding: 5px;
     min-height: 480px;
 }
 
 .left_content {
-    background-color: #dddddd;
-    padding: 5px;
+    background-color: rgba(255,255,255,0.7);
+    padding: 10px;
     margin-left: 170px;
     min-height: 480px;
+    
+/*    opacity: 33%*/
+/*    ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";*/
 }
 
 .right_content {
-    background-color: #dddddd;
+   background-color: rgba(255,255,255,0.0);
     padding: 5px;
-    margin: 0px 0px 0px 170px;
+    margin: 15px 15px 0px 170px;
     min-height: 480px;
 }
 
@@ -64,7 +87,7 @@
 }
 
 #top p {
-    color: white;
+    color: #ff9933;
   font-weight : bold;
   text-decoration : underline;    
 }

@@ -7,7 +7,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
     
-    <ui:param name="pageBean" value="#{registerEmployeePageBean}" />
+    <ui:param name="pageBean" value="#{registerPageBean}" />
 
     <ui:define name="top">
         <p>${msg["main.page"]}/${msg["menu.register"]}</p>
@@ -17,7 +17,7 @@
         <ui:include src="../templates/menu.xhtml" />
     </ui:define>
     <ui:define name="content">
-        <h:form id="registerEmployeeForm" prependId="false">
+        <h:form id="registerForm" prependId="false">
             <h:panelGrid columns="3">
 
                 <ui:include src="templateLoginEdit.xhtml"/>
@@ -25,13 +25,13 @@
 
                 <ui:include src="templateDataCommonEdit.xhtml"/>
 
-                <ui:include src="templateDataEmployeeEdit.xhtml"/>
+                <ui:include src="templateDataEdit.xhtml"/>
 
             </h:panelGrid>
 
             <br />
             
-            <h:commandButton action="#{registerEmployeePageBean.confirmRegistration}" value="#{msg['menu.register']}" />
+            <h:commandButton action="#{registerPageBean.confirmRegistration}" value="#{msg['menu.register']}" />
             <br />
             <h:commandButton value="#{msg['action.cancel']}" action="cancelAction" immediate="true" />
         </h:form>

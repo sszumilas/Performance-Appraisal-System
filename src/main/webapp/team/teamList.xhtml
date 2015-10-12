@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="../templates/MainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="top">
+        <p>${msg["main.page"]}/${msg["menu.team.list"]}</p>
+    </ui:define>
+
+    <ui:define name="left">
+        <ui:include src="../templates/menu.xhtml" />
+    </ui:define>
+    
+    
+    
+    <ui:define name="content">
+        <h:form id="teamListForm">
+            <h:messages for="teamList"/>
+            <h:panelGrid columns="3">
+            <h:outputLabel for="matchTeamName" value="#{msg['team.matchByTeamName']}"/><h:inputText id="matchTeamName" value="#{teamListPageBean.requestTeamName}" /><h:commandButton value="#{msg['action.refresh']}" action="#{teamListPageBean.refresh()}" />
+            </h:panelGrid>
+            <h:dataTable id="teamList" var="row" value="#{teamListPageBean.teamDataModel}" headerClass="table_header" rowClasses="row_odd,row_even">
+                <h:column id="teamName">
+                    <f:facet name="header">${msg['team.teamName']}</f:facet>
+                    <h:outputText value="#{row.teamName}" />
+                </h:column>
+                <h:column id="team_manager_id_fk">
+                    <f:facet name="header">${msg['team.team_manager_id_fk']}</f:facet>
+                    <h:outputText value="#{row.team_manager_id_fk}" />
+                </h:column>
+                
+                    
+                <h:column id="actions">
+                    <f:facet name="header">${msg['general.actions']}</f:facet>
+                    <h:commandButton action="#{accountsListPageBean.editAccount()}" value="${msg['action.edit']}"/>
+                    <h:commandButton action="#{accountsListPageBean.beginChangePassword()}" value="${msg['menu.accounts.changePassword']}"/>
+                    <h:commandButton action="#{accountsListPageBean.activateAccount()}" value="${msg['action.activate']}" rendered="#{not row.active}"/>
+                    <h:commandButton action="#{accountsListPageBean.deactivateAccount}" value="${msg['action.deactivate']}" rendered="#{row.active}"/>
+                    <h:commandButton action="#{accountsListPageBean.createEnote}" value="${msg['action.createEnote']}" rendered="#{row.active}"/>
+                    
+                    <h:commandButton action="#{accountsListPageBean.confirmAccount}" value="${msg['action.confirm']}" rendered="#{not row.confirmed}"/>
+                </h:column>
+                                
+                
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<!--    <ui:define name="content">
+        <h:form id="teamListForm">
+            <h:messages for="teamList" />
+            <h:selectBooleanCheckbox id="confirmedOnly" value="#{teamListPageBean.notConfirmedOnly}" /><h:outputLabel for="confirmedOnly" value="#{msg['enote.notConfirmedOnly']}" />
+            <h:commandButton value="#{msg['action.refresh']}" action="#{teamListPageBean.refresh()}"/>
+            <h:dataTable id="teamList" var="row" value="#{teamListPageBean.teamDataModel}" headerClass="table_header" rowClasses="row_odd,row_even">
+                <ui:include src="templateTeamList.xhtml" />
+                <h:column id="actions">
+                    <f:facet name="header">${msg['general.actions']}</f:facet>
+                    <h:commandButton action="#{teamListPageBean.deleteSelectedTeam()}" value="${msg['action.delete']}" rendered="#{not row.confirmed}"/>
+                </h:column>
+
+
+            </h:dataTable>
+        </h:form>
+    </ui:define>-->
+
+</ui:composition>

@@ -6,21 +6,27 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core">
 
-        <ui:param name="pageBean" value="#{zlozMojeZamowienieKlientPageBean}" />
+        <ui:param name="pageBean" value="#{createEnotePageBean}" />
 
     <ui:define name="top">
-        <p>${msg["main.page"]}/${msg["page.createOrder"]}</p>
+        <p>${msg["main.page"]}/${msg["page.createEnote"]}</p>
     </ui:define>
 
     <ui:define name="left">
         <ui:include src="../templates/menu.xhtml" /> 
     </ui:define>
     <ui:define name="content">
-        <h:form>
+        <h:form id="createEnoteForm" prependId="false">
+            <h:panelGrid columns="3">
 
-<ui:include src="templateZamowienieView.xhtml" />
+<ui:include src="templateDataEnoteView.xhtml" />
+
+            </h:panelGrid>
+
+
+
             <br />
-            <h:commandButton action="#{zlozMojeZamowienieKlientPageBean.zlozZamowienie()}" value="#{msg['action.createOrder']}" />
+            <h:commandButton action="#{createEnotePageBean.createEnote()}" value="#{msg['action.createEnote']}" />
             <br />
             <h:commandButton value="#{msg['action.cancel']}" action="cancelAction" immediate="true" />
         </h:form>

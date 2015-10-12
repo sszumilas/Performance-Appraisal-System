@@ -109,4 +109,11 @@ public class AccountsListPageBean {
     public String beginChangePassword() {
         return accountSession.beginChangePassword(accountsDataModel.getRowData());
     }
+    public String createEnote() {
+        return accountSession.createEnote(accountsDataModel.getRowData());
+    }
+    public String createMnote() {
+        return accountSession.createMnote(accountsDataModel.getRowData());
+    }
+    
 }

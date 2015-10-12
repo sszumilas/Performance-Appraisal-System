@@ -50,8 +50,8 @@ public class EditAccountPageBean {
         return AccountUtils.isAdmin(account);
     }
     
-//    public String saveAccount() throws AppBaseException {
-//        return AccountSession.saveAccountAfterEdit(account);
-//    }
+    public String saveAccount() {
+        return AccountSession.saveAccountEdit(account);
+    }
 
 }

@@ -11,11 +11,14 @@ import javax.persistence.Basic;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -28,35 +31,46 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Cacheable(false)
-@Table(catalog = "", schema = "SOP")
-@XmlRootElement
+@Table(name= "ENOTE", schema = "SOP")
+
+@TableGenerator(name = "EnoteIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Enote", initialValue = 200)
+//@XmlRootElement
 public class Enote implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(nullable = false)
+//    @Column(nullable = false)
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "EnoteIdGen")
     private Long id;
     @Size(max = 255)
-    @Column(length = 255)
+//    @Column(length = 255)
+    @Column(name = "ACHIEVEMENTS")
     private String achievements;
     @Size(max = 255)
-    @Column(length = 255)
+//    @Column(length = 255)
+    @Column(name = "ASPIRATION")
     private String aspiration;
-    @Temporal(TemporalType.DATE)
-    private Date date;
+//    @Temporal(TemporalType.DATE)
+//    private Date date;
     @Size(max = 255)
-    @Column(length = 255)
+//    @Column(length = 255)
+    @Column(name = "IMPROVEMENT")
     private String improvement;
+    @Column(name = "MOBILITY")
     private Short mobility;
     @Size(max = 255)
-    @Column(length = 255)
+//    @Column(length = 255)
+    @Column(name = "NACTIVITY")
     private String nactivity;
     @Size(max = 255)
-    @Column(length = 255)
+//    @Column(length = 255)
+    @Column(name = "PROMISES")
     private String promises;
     @Size(max = 255)
-    @Column(length = 255)
+//    @Column(length = 255)
+    @Column(name = "TARGET")
     private String target;
     @Basic(optional = false)
     @NotNull
@@ -83,9 +97,9 @@ public class Enote implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getAchievements() {
         return achievements;
@@ -103,13 +117,13 @@ public class Enote implements Serializable {
         this.aspiration = aspiration;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+//    public Date getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(Date date) {
+//        this.date = date;
+//    }
 
     public String getImprovement() {
         return improvement;

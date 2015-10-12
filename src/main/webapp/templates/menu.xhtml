@@ -7,7 +7,7 @@
     <h:form id="menu">
         <ul>
             <li><h:outputLink value="../main/index.xhtml" >${msg["main.page"]}</h:outputLink></li>
-            <li><h:outputLink value="../account/registerEmployee.xhtml" >${msg["menu.register"]}</h:outputLink></li>
+<!--            <li><h:outputLink value="../account/registerEmployee.xhtml" >${msg["menu.register"]}</h:outputLink></li>-->
             <li>${msg["menu.accounts"]}</li>
             <ul>
                 <li><h:outputLink value="../account/accountsList.xhtml" >${msg["menu.accounts.list"]}</h:outputLink></li>
@@ -19,10 +19,20 @@
             <ul>
                 <li><h:outputLink value="../enote/enoteList.xhtml" >${msg["menu.enote.list"]}</h:outputLink></li>
                 <li><h:outputLink value="../mnote/mnoteList.xhtml" >${msg["menu.mnote.list"]}</h:outputLink></li>
-                <li><h:outputLink value="../enote/editEnote.xhtml" >${msg["menu.enote.edit"]}</h:outputLink></li>
-                <li><h:outputLink value="../enote/create.xhtml" >${msg["menu.enote.create"]}</h:outputLink></li>
+<!--                <li><h:outputLink value="../enote/editEnote.xhtml" >${msg["menu.enote.edit"]}</h:outputLink></li>-->
+                <li><h:outputLink value="../enote/createEnote.xhtml" >${msg["menu.enote.create"]}</h:outputLink></li>
+            </ul>
+            <li>${msg["menu.teams"]}</li>
+            <ul>
+                <li><h:outputLink value="../team/teamList.xhtml" >${msg["menu.team.list"]}</h:outputLink></li>
+                <li><h:outputLink value="../team/createTeam.xhtml" >${msg["menu.team.create"]}</h:outputLink></li>
             </ul>
             <li>Login: ${accountSession.myLogin}</li>
+            
+                        
+            <h:commandLink action="#{logoutBean.logout}" value="Logout" />
+            
+            
         </ul>
     </h:form>
 </ui:composition>

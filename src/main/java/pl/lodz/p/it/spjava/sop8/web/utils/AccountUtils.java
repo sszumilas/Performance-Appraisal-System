@@ -39,8 +39,8 @@ public class AccountUtils {
 
     /**
      * Przepisuje do przekazanej encji dane z formularza edycji konta.
-     * Uwzględnione są klasy rozszerzające Konto (Administrator, Pracownik,
-     * Klient), przy czym tylko dane występujące na formularzu sa przepisywane.
+     * Uwzględnione są klasy rozszerzające Konto (Administrator, Menadżer,
+     * Pracownik), przy czym tylko dane występujące na formularzu sa przepisywane.
      * Pomijane są: login, hasło, id, wersja.
      *
      * @param source encja zawierająca dane z formularza edycji

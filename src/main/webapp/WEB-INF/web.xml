@@ -1,6 +1,56 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.1" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+    
+    
+    
     <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resourceBundle.path</param-name>
+        <param-value>i18n.messages</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            15
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>/faces/index.xhtml</welcome-file>
+        <!--        <welcome-file>index.html</welcome-file>-->
+    </welcome-file-list>
+    
+    
+        <context-param>
+<!--        Ustawienie tego parametru na wartość true powoduje, że JSF będzie traktować puste pola formularza
+        jako wartości null, nie zaś puste napisy ("")-->
+        <param-name>
+            javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL
+        </param-name>
+        <param-value>true</param-value>
+    </context-param>
+</web-app>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <!--    <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
@@ -32,5 +82,81 @@
     <servlet-mapping>
         <servlet-name>javax.ws.rs.core.Application</servlet-name>
         <url-pattern>/rest</url-pattern>
-    </servlet-mapping>
-</web-app>
+    </servlet-mapping>-->
+<!--    <security-constraint>
+        <display-name>AdminConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>admin</web-resource-name>
+            <description/>
+            <url-pattern>/faces/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>EmployeeConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>employee</web-resource-name>
+            <description/>
+            <url-pattern>faces/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+            <role-name>employee</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>ManagerConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>manager</web-resource-name>
+            <description/>
+            <url-pattern>faces/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+            <role-name>manager</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>SOPJDBCRealm</realm-name>
+        <form-login-config>
+            <form-login-page>/login/login.xhtml</form-login-page>
+            <form-error-page>/login/loginError.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>Admin</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>Manager</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>Employee</role-name>
+    </security-role>-->
+<!--</web-app>-->

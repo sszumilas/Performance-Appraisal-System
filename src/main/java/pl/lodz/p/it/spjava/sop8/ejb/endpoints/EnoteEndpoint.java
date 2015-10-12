@@ -80,11 +80,20 @@ public class EnoteEndpoint extends AbstractEndpoint implements SessionSynchroniz
     }
     
 //    public List<Enote> getMyEnote() {
-//        return enoteFacade.znajdzZamowieniaDlaKlienta(accountEndpoint.getMyAccount().getLogin());
+//        return enoteFacade.findEnotes(accountEndpoint.getMyAccount().getLogin());
 //    }
 //
 //    public List<Enote> pobierzMojeZamowieniaNieZatwierdzone() {
 //        return enoteFacade.znajdzZamowieniaNieZatwierdzoneDlaKlienta(accountEndpoint.getMyAccount().getLogin());
+//    }
+
+//
+//    public List<Enote> getMyEnotes() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    public List<Enote> getMyEnoteNotConfirmed() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
     
 }

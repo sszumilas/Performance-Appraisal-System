@@ -193,6 +193,11 @@ public class Account extends AbstractEntity implements Serializable {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+
      
     
     
