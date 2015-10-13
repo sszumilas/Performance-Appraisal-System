@@ -12,14 +12,30 @@
         <param-name>resourceBundle.path</param-name>
         <param-value>i18n.messages</param-value>
     </context-param>
+    <context-param>
+        <!--        Ustawienie tego parametru na wartość true powoduje, że JSF będzie traktować puste pola formularza
+        jako wartości null, nie zaś puste napisy ("")-->
+        <param-name>
+            javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL
+        </param-name>
+        <param-value>true</param-value>
+    </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+        <servlet>
+        <servlet-name>javax.ws.rs.core.Application</servlet-name>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>javax.ws.rs.core.Application</servlet-name>
+        <url-pattern>/rest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -32,14 +48,6 @@
     </welcome-file-list>
     
     
-        <context-param>
-<!--        Ustawienie tego parametru na wartość true powoduje, że JSF będzie traktować puste pola formularza
-        jako wartości null, nie zaś puste napisy ("")-->
-        <param-name>
-            javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL
-        </param-name>
-        <param-value>true</param-value>
-    </context-param>
 </web-app>
 
     
@@ -50,35 +58,8 @@
     
     
     
-    <!--    <context-param>
-        <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
-    </context-param>
-    <context-param>
-        <param-name>resourceBundle.path</param-name>
-        <param-value>i18n.messages</param-value>
-    </context-param>
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
-    </servlet-mapping>
-    <session-config>
-        <session-timeout>
-            15
-        </session-timeout>
-    </session-config>
-    <welcome-file-list>
-        <welcome-file>/faces/index.xhtml</welcome-file>
-    </welcome-file-list>
-    <servlet>
-        <servlet-name>javax.ws.rs.core.Application</servlet-name>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+    <!--    
+
     <servlet-mapping>
         <servlet-name>javax.ws.rs.core.Application</servlet-name>
         <url-pattern>/rest</url-pattern>

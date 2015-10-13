@@ -1,5 +1,7 @@
 package pl.lodz.p.it.spjava.sop8.web.utils;
 
+import com.google.common.base.Charsets;
+import com.google.common.hash.Hashing;
 import pl.lodz.p.it.spjava.sop8.model.Admin;
 import pl.lodz.p.it.spjava.sop8.model.Employee;
 import pl.lodz.p.it.spjava.sop8.model.Account;
@@ -40,8 +42,8 @@ public class AccountUtils {
     /**
      * Przepisuje do przekazanej encji dane z formularza edycji konta.
      * Uwzględnione są klasy rozszerzające Konto (Administrator, Menadżer,
-     * Pracownik), przy czym tylko dane występujące na formularzu sa przepisywane.
-     * Pomijane są: login, hasło, id, wersja.
+     * Pracownik), przy czym tylko dane występujące na formularzu sa
+     * przepisywane. Pomijane są: login, hasło, id, wersja.
      *
      * @param source encja zawierająca dane z formularza edycji
      * @param target encja docelowa
@@ -76,9 +78,15 @@ public class AccountUtils {
         }
     }
 
-    public static String calculateHashPassword(String passwordVisible) {
-        //TODO: wstawić algorytm skrótu hasła
-        return passwordVisible;
-    }
+//    public static String calculateHashPassword(String passwordVisible) {
+//        //TODO: wstawić algorytm skrótu hasła
+//        return passwordVisible;
+//    }
 
+    public static String calculateHashPassword(String passwordVisible) {
+        String output
+                = Hashing.sha256()
+                .hashString(passwordVisible, Charsets.UTF_8).toString();
+        return output;
+    }
 }

@@ -16,6 +16,7 @@ import pl.lodz.p.it.spjava.sop8.exception.AppBaseException;
 import pl.lodz.p.it.spjava.sop8.model.Employee;
 import pl.lodz.p.it.spjava.sop8.model.Account;
 import pl.lodz.p.it.spjava.sop8.web.utils.AccountUtils;
+import pl.lodz.p.it.spjava.sop8.web.utils.HashedPasswordGenerator;
 
 /**
  *

@@ -9,10 +9,6 @@ import pl.lodz.p.it.spjava.sop8.exception.AppBaseException;
 import pl.lodz.p.it.spjava.sop8.model.Enote;
 import pl.lodz.p.it.spjava.sop8.model.Team;
 
-/**
- *
- * @author java
- */
 @ManagedBean(name = "createTeamPageBean")
 @RequestScoped
 public class CreateTeamPageBean {
