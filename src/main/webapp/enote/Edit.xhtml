@@ -17,24 +17,33 @@
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditEnoteLabel_id}" for="id" />
                     <h:inputText id="id" value="#{enoteController.selected.id}" title="#{bundle.EditEnoteTitle_id}" required="true" requiredMessage="#{bundle.EditEnoteRequiredMessage_id}"/>
+                    
                     <h:outputLabel value="#{bundle.EditEnoteLabel_achievements}" for="achievements" />
                     <h:inputText id="achievements" value="#{enoteController.selected.achievements}" title="#{bundle.EditEnoteTitle_achievements}" />
+                    
                     <h:outputLabel value="#{bundle.EditEnoteLabel_aspiration}" for="aspiration" />
                     <h:inputText id="aspiration" value="#{enoteController.selected.aspiration}" title="#{bundle.EditEnoteTitle_aspiration}" />
+                    
                     <h:outputLabel value="#{bundle.EditEnoteLabel_date}" for="date" />
                     <h:inputText id="date" value="#{enoteController.selected.date}" title="#{bundle.EditEnoteTitle_date}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:inputText>
+                    
                     <h:outputLabel value="#{bundle.EditEnoteLabel_improvement}" for="improvement" />
                     <h:inputText id="improvement" value="#{enoteController.selected.improvement}" title="#{bundle.EditEnoteTitle_improvement}" />
+                    
                     <h:outputLabel value="#{bundle.EditEnoteLabel_mobility}" for="mobility" />
                     <h:inputText id="mobility" value="#{enoteController.selected.mobility}" title="#{bundle.EditEnoteTitle_mobility}" />
+                    
                     <h:outputLabel value="#{bundle.EditEnoteLabel_nactivity}" for="nactivity" />
                     <h:inputText id="nactivity" value="#{enoteController.selected.nactivity}" title="#{bundle.EditEnoteTitle_nactivity}" />
+                    
                     <h:outputLabel value="#{bundle.EditEnoteLabel_promises}" for="promises" />
                     <h:inputText id="promises" value="#{enoteController.selected.promises}" title="#{bundle.EditEnoteTitle_promises}" />
+                    
                     <h:outputLabel value="#{bundle.EditEnoteLabel_target}" for="target" />
                     <h:inputText id="target" value="#{enoteController.selected.target}" title="#{bundle.EditEnoteTitle_target}" />
+                    
                 </h:panelGrid>
                 <h:commandLink action="#{enoteController.update}" value="#{bundle.EditEnoteSaveLink}"/>
                 <br />

@@ -20,8 +20,8 @@ import pl.lodz.p.it.spjava.sop8.model.Enote;
 @LocalBean
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class EnoteEndpoint extends AbstractEndpoint implements SessionSynchronization{
-    @EJB
-    private AccountEndpoint accountEndpoint;
+//    @EJB
+//    private AccountEndpoint accountEndpoint;
     
     @EJB
     private EnoteManager enoteManager;
@@ -29,6 +29,8 @@ public class EnoteEndpoint extends AbstractEndpoint implements SessionSynchroniz
     private EnoteFacade enoteFacade;
     
     private Enote enoteState; //przechuwuje encję pobranego zamówenia na potrzeby przechowania jej wersji do czasu zatwierdzenia pobranego zamówienia
+    
+    
     
     public Enote getEnoteToChange(Long idEnote) {
         enoteState = enoteFacade.find(idEnote);
@@ -62,9 +64,9 @@ public class EnoteEndpoint extends AbstractEndpoint implements SessionSynchroniz
         enoteFacade.remove(enote);//ZamowienieFacade dziedziczy metodę remove() z AbstractFacade, metoda ta sama wywołuje merge() przed usunięciem, więc nie musimy dołączać encji do bieżącego kontekstu trwałości
     }
     
-	@Interceptors(PerformanceInterceptor.class)
+//	@Interceptors(PerformanceInterceptor.class)
     public void createEnote(Enote enote) throws AppBaseException {
-        enoteManager.createEnote(enote);
+        enoteFacade.create(enote);
     }
     
 //    public void odswiezCenyProduktow(Enote enote) {

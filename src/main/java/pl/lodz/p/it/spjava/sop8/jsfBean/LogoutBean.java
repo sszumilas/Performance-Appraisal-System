@@ -26,10 +26,12 @@ import javax.servlet.http.HttpServletRequest;
 public class LogoutBean {
     
     private static Logger log = Logger.getLogger(LogoutBean.class.getName());
+    private String logout;
     
     public String logout() {
-        
-        String destination = "main/index?faces-redirect=true";
+//        
+        String destination = "/main/index.xhtml";
+//        String destination = "main/index?faces-redirect=true";
         
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = 
@@ -39,10 +41,12 @@ public class LogoutBean {
             request.logout();
         } catch (ServletException e) {
             log.log(Level.SEVERE, "Failed to logout user!", e);
-            destination = "/login/loginerror?faces-redirect=true";
+            destination = "/login/loginerror";
+//            destination = "/login/loginerror?faces-redirect=true";
             
         }
         return destination;
     }
     
 }
+

@@ -53,7 +53,6 @@ public class AccountEndpoint extends AbstractEndpoint implements SessionSynchron
     public void createAccount(Account account) throws AppBaseException {
         account.setActive(false);
         account.setConfirmed(false);
-        // Konto ma hasło jawne podane w formularzu, należy je przeliczyć na skrót
         account.setPassword(AccountUtils.calculateHashPassword(account.getPassword()));
         accountFacade.create(account);
     }

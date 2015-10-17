@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+
+    <h:outputLabel value="#{msg['mnote.achievements']} *" for="achievements" />
+    <h:inputText id="name" value="#{pageBean.mnote.achievements}" title="#{msg['mnote.achievements']}" >
+        <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
+        <!--<f:validateLength minimum="3" maximum="32" />-->
+    </h:inputText>
+    <h:message for="achievements" />
+
+    <h:outputLabel value="#{msg['mnote.aspiration']}" for="aspiration" />
+    <h:inputText id="aspiration" value="#{pageBean.mnote.aspiration}" title="#{msg['mnote.aspiration']}" >
+    </h:inputText>
+    <h:message for="aspiration" />
+
+    <h:outputLabel value="#{msg['mnote.improvement']}" for="improvement" />
+    <h:inputText id="improvement" value="#{pageBean.mnote.improvement}" title="#msg['mnote.improvement']}"> 
+    </h:inputText>
+    <h:message for="improvement" />
+    <h:outputLabel value="#{msg['enote.nactivity']}" for="nactivity" />
+    <h:inputText id="nactivity" value="#{pageBean.mnote.nactivity}" title="#msg['enote.nactivity']}"> 
+    </h:inputText>
+    <h:message for="nactivity" />
+    <h:outputLabel value="#{msg['mnote.note']}" for="note" />
+    <h:inputText id=note" value="#{pageBean.mnote.note}" title="#msg['mnote.note']}"> 
+    </h:inputText>
+    <h:message for="note" />
+    <h:outputLabel value="#{msg['mnote.potent']}" for="potent" />
+    <h:inputText id=potent" value="#{pageBean.mnote.potent}" title="#msg['mnote.potent']}"> 
+    </h:inputText>
+    <h:message for="potent" />
+    <h:outputLabel value="#{msg['mnote.promises']}" for="promises" />
+    <h:inputText id="promises" value="#{pageBean.mnote.promises}" title="#msg['mnote.promises']}"> 
+    </h:inputText>
+    <h:message for="promises" />
+    <h:outputLabel value="#{msg['mnote.summary']}" for="summary" />
+    <h:inputText id="summary" value="#{pageBean.mnote.summary}" title="#msg['mnote.summary']}"> 
+    </h:inputText>
+    <h:message for="summary" />
+</ui:composition>
+
+

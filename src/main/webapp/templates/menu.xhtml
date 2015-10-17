@@ -27,12 +27,21 @@
                 <li><h:outputLink value="../team/teamList.xhtml" >${msg["menu.team.list"]}</h:outputLink></li>
                 <li><h:outputLink value="../team/createTeam.xhtml" >${msg["menu.team.create"]}</h:outputLink></li>
             </ul>
-            <li>Login: ${accountSession.myLogin}</li>
-            
-                        
+            <br></br>
+            <br></br>
+            <br></br>
+
+            ${msg["myLogin"]} 
+            <br></br>
+            <b>
+            ${accountSession.myName}
+            </b>
+            <br></br>
+            <br></br>
+
             <h:commandLink action="#{logoutBean.logout}" value="Logout" />
-            
-            
+
+
         </ul>
     </h:form>
 </ui:composition>

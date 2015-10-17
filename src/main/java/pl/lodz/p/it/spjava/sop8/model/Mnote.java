@@ -256,5 +256,21 @@ public class Mnote implements Serializable {
     public String toString() {
         return "pl.lodz.p.it.spjava.Mnote[ id=" + id + " ]";
     }
+
+    public void setWhoCreate(Employee myAccountEmployee) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean isConfirmed() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setWhoConfirmed(Manager myAccountManager) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setConfirmed(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

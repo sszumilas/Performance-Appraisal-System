@@ -10,7 +10,7 @@
         </resource-bundle>
     </application>
     
-        <application>
+    <application>
         <locale-config>
             <default-locale>en</default-locale>
             <supported-locale>pl</supported-locale>
@@ -29,18 +29,23 @@
             <base-name>/Bundle</base-name>
             <var>bundle</var>
         </resource-bundle>
-                <resource-bundle>
-                        <base-name>/Bundle</base-name>
-                        <var>bundle</var>
-                </resource-bundle>
-        </application>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
         
-            <navigation-rule>
+    <navigation-rule>
         <navigation-case>
             <from-outcome>cancelAction</from-outcome>
             <to-view-id>/main/index.xhtml</to-view-id>
             <redirect />
-             </navigation-case>        
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login/login.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
         <navigation-case>
             <from-outcome>confirmRegister</from-outcome>
             <to-view-id>/account/registerEmployeeConfirm.xhtml</to-view-id>
@@ -76,12 +81,22 @@
             <to-view-id>/enote/createEnote.xhtml</to-view-id>
             <redirect />
         </navigation-case>        
+        
         <navigation-case>
             <from-outcome>success</from-outcome>
             <to-view-id>/common/success.xhtml</to-view-id>
             <redirect />
         </navigation-case>
-            </navigation-rule>
+    </navigation-rule>
+            
+    <navigation-rule>
+        <from-view-id>/enote/createEnote.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/main/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+            
     <application>
         <el-resolver>pl.lodz.p.it.spjava.sop8.ejb.endpoints.util.JsfCrudELResolver</el-resolver>
     </application>
@@ -101,7 +116,8 @@
         <managed-bean-name>teamJpa</managed-bean-name>
         <managed-bean-class>pl.lodz.p.it.spjava.sop8.ejb.facades.TeamFacade</managed-bean-class>
     
-        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
     <converter>
         <converter-for-class>pl.lodz.p.it.spjava.sop8.model.Team</converter-for-class>
         <converter-class>pl.lodz.p.it.spjava.sop8.ejb.endpoints.TeamConverter</converter-class>

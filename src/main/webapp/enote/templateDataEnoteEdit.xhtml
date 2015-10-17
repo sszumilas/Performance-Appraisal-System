@@ -5,34 +5,66 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core">
 
+
+
     <h:outputLabel value="#{msg['enote.achievements']} *" for="achievements" />
-    <h:inputText id="name" value="#{pageBean.enote.achievements}" title="#{msg['enote.achievements']}" required="true" >
-            <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
-    <!--<f:validateLength minimum="3" maximum="32" />-->
+    <h:inputText id="name" value="#{pageBean.enote.achievements}" title="#{msg['enote.achievements']}" >
+        <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
+        <!--<f:validateLength minimum="3" maximum="32" />-->
     </h:inputText>
     <h:message for="achievements" />
 
-    <h:outputLabel value="#{msg['account.surname']} *" for="surname" />
+    <h:outputLabel value="#{msg['enote.aspiration']}" for="aspiration" />
+    <h:inputText id="aspiration" value="#{pageBean.enote.aspiration}" title="#{msg['enote.aspiration']}" >
+    </h:inputText>
+    <h:message for="aspiration" />
+
+    <h:outputLabel value="#{msg['enote.improvement']}" for="improvement" />
+    <h:inputText id="improvement" value="#{pageBean.enote.improvement}" title="#msg['enote.improvement']}"> 
+    </h:inputText>
+    <h:message for="improvement" />
+    <h:outputLabel value="#{msg['enote.mobility']}" for="mobility" />
+    <h:inputText id="mobility" value="#{pageBean.enote.mobility}" title="#msg['enote.mobility']}"> 
+    </h:inputText>
+    <h:message for="mobility" />
+    <h:outputLabel value="#{msg['enote.nactivity']}" for="nactivity" />
+    <h:inputText id="nactivity" value="#{pageBean.enote.nactivity}" title="#msg['enote.nactivity']}"> 
+    </h:inputText>
+    <h:message for="nactivity" />
+    <h:outputLabel value="#{msg['enote.promises']}" for="promises" />
+    <h:inputText id="promises" value="#{pageBean.enote.promises}" title="#msg['enote.promises']}"> 
+    </h:inputText>
+    <h:message for="promises" />
+    <h:outputLabel value="#{msg['enote.target']}" for="target" />
+    <h:inputText id="target" value="#{pageBean.enote.target}" title="#msg['enote.target']}"> 
+    </h:inputText>
+    <h:message for="target" />
+</ui:composition>
+
+
+
+
+<!--    <h:outputLabel value="#{msg['account.surname']} *" for="surname" />
     <h:inputText id="surname" value="#{pageBean.account.surname}" title="#{msg['account.surname']}" required="true" >
-        <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
-        <!--<f:validateLength minimum="3" maximum="32" />-->
+        Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation
+        <f:validateLength minimum="3" maximum="32" />
     </h:inputText>
     <h:message for="surname" />
 
     <h:outputLabel value="#{msg['account.email']} *" for="email" />
     <h:inputText id="email" value="#{pageBean.account.email}" title="#{msg['account.email']}" required="true" >
-        <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
-<!--        <f:validateLength minimum="6" maximum="64" />
-        <f:validateRegex pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$" />-->
+        Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation
+        <f:validateLength minimum="6" maximum="64" />
+        <f:validateRegex pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$" />
     </h:inputText>
     <h:message for="email" />
 
     <h:outputLabel value="#{msg['account.telephone']}" for="telephone" />
     <h:inputText id="telephone" value="#{pageBean.account.telephone}" title="#{msg['account.telephone']}" required="false" >
-        <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
-        <!--<f:validateLength maximum="12" />-->
-    </h:inputText>
+        Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation
+        <f:validateLength maximum="12" />
+    </h:inputText>-->
 
-    <h:message for="telephone" />
+<!--    <h:message for="telephone" />-->
 
-</ui:composition>
+

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <h:outputLabel value="#{msg['mnote.achievements']}" for="achievements" />
+    <h:outputText id="achievements" value="#{pageBean.mnote.achievements}" title="#{msg['mnote.achievements']}" />
+    <h:message for="achievements" />
+
+
+
+    <h:outputLabel value="#{msg['mnote.aspiration']}" for="aspiration" />
+    <h:outputText id="aspiration" value="#{pageBean.mnote.aspiration}" title="#{msg['enote.aspiration']}" >
+    </h:outputText>
+    <h:message for="aspiration" />
+
+    <h:outputLabel value="#{msg['mnote.improvement']}" for="improvement" />
+    <h:outputText id="improvement" value="#{pageBean.enote.improvement}" title="#msg['mnote.improvement']}"> 
+    </h:outputText>
+    <h:message for="improvement" />
+    
+    <h:outputLabel value="#{msg['mnote.mobility']}" for="mobility" />
+    <h:outputText id="mobility" value="#{pageBean.mnote.mobility}" title="#msg['mnote.mobility']}"> 
+    </h:outputText>
+    <h:message for="mobility" />
+    
+    <h:outputLabel value="#{msg['mnote.nactivity']}" for="nactivity" />
+    <h:outputText id="nactivity" value="#{pageBean.mnote.nactivity}" title="#msg['mnote.nactivity']}"> 
+    </h:outputText>
+    <h:message for="nactivity" />
+    
+    <h:outputLabel value="#{msg['mnote.promises']}" for="promises" />
+    <h:outputText id="promises" value="#{pageBean.mnote.promises}" title="#msg['mnote.promises']}"> 
+    </h:outputText>
+    <h:message for="promises" />
+
+
+
+
+    <h:outputLabel value="#{msg['mnote.target']}" for="target" />
+    <h:outputText id="target" value="#{pageBean.mnote.target}" title="#msg['mnote.target']}"> 
+    </h:outputText>
+    <h:message for="target" />
+
+
+
+
+</ui:composition>

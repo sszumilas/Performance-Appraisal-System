@@ -42,7 +42,7 @@ public class AccountSession implements Serializable {
         return "cancelAction";
     }
 
-    public String getMyLogin() {
+    public String getMyName() {
         return ContextUtils.getUserName();
     }
     private Employee employeeRegistration;
