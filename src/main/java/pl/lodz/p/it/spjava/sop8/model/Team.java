@@ -30,12 +30,15 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 //@MappedSuperclass
-@Table(name = "TEAM", schema = "SOP")
-@NamedQueries({
-    @NamedQuery(name = "Team.findAll", query = "SELECT t FROM Team t"),
-    @NamedQuery(name = "Team.findById", query = "SELECT t FROM Team t WHERE t.id = :id"),
-    @NamedQuery(name = "Team.findByTeamName", query = "SELECT t FROM Team t WHERE t.teamName = :teamName")})
-@TableGenerator(name = "TeamIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Team", initialValue = 100)
+@Table(name = "Team")
+//@NamedQueries({
+//    @NamedQuery(name = "Team.findAll", query = "SELECT t FROM Team t"),
+////    @NamedQuery(name = "Team.findById", query = "SELECT t FROM Team t WHERE t.id = :id"),
+//    @NamedQuery(name = "Team.findByTeamName", query = "SELECT t FROM Team t WHERE t.teamName = :teamName")})
+
+
+
+@TableGenerator(name = "TeamIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Team", initialValue = 300)
 //@XmlRootElement
 public class Team implements Serializable {
 
@@ -43,15 +46,15 @@ public class Team implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "TeamIdGen")
     private Long id;
     @Size(min = 1, max = 255)
-    @Column(name = "TEAM_NAME", nullable = false, length = 255)
+    @Column(name = "team_name", nullable = false, length = 255)
     private String teamName;
     @OneToMany(mappedBy = "teamIdFk")
     private List<Personaldata> personaldataList;
-    @JoinColumn(name = "TEAM_MANAGER_ID_FK", referencedColumnName = "ID")
+    @JoinColumn(name = "team_manager_id_fk", referencedColumnName = "id")
     @ManyToOne
     private Account teamManagerIdFk;
 
