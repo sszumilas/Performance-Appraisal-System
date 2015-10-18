@@ -6,12 +6,12 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
                     <h:outputLabel value="#{msg['team.teamName']}" for="teamName" />
-                    <h:outputText id="teamName" value="#{pageBean.team.teamName}" title="#{msg['team.teamName']}" />
+                    <h:outputText id="teamName" value="#{createTeamPageBean.team.teamName}" title="#{msg['team.teamName']}" />
                     <h:message for="teamName" />
 
-                    <h:outputLabel value="#{msg['team.team_manager_id_fk']}" for="team_manager_id_f" />
-                    <h:outputText id="team_manager_id_f" value="#{pageBean.team.team_manager_id_f}" title="#{msg['team.team_manager_id_f']}" />
-                    <h:message for="team_manager_id_f" />
+                    <h:outputLabel value="#{msg['team.team_manager_id_fk']}" for="team_manager_id_fk" />
+                    <h:outputText id="team_manager_id_fk" value="#{createTeamPageBean.team.team_manager_id_fk}" title="#{msg['team.team_manager_id_fk']}" />
+                    <h:message for="team_manager_id_fk" />
 
 
 

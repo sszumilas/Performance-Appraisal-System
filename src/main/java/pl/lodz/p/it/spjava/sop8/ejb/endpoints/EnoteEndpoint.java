@@ -28,45 +28,45 @@ public class EnoteEndpoint extends AbstractEndpoint implements SessionSynchroniz
     @EJB
     private EnoteFacade enoteFacade;
     
-    private Enote enoteState; //przechuwuje encję pobranego zamówenia na potrzeby przechowania jej wersji do czasu zatwierdzenia pobranego zamówienia
+//    private Enote enoteState; //przechuwuje encję pobranego zamówenia na potrzeby przechowania jej wersji do czasu zatwierdzenia pobranego zamówienia
     
     
     
-    public Enote getEnoteToChange(Long idEnote) {
-        enoteState = enoteFacade.find(idEnote);
-        return enoteState;
-    }
-    
-    public void confirmEnote(Enote enote) throws AppBaseException {
-        if (null == enoteState) {
-            throw EnoteException.createWithNoStateInEJBEndpoint(enote);
-        }
-        if (!enoteState.equals(enote)) {
-            throw EnoteException.createWithInvalidStateInEJBEndpoint(enote);
-        }
-        // Zamowienie otrzymane z warstwy widoku bylo prezentowane tylko do odczytu, sprawdzona zostala identycznosc obiektow
-        // zatem zamowienieStan jest tozsame z tym co potwierdzil pracownik
-        enoteManager.confirmEnote(enoteState); //encja  zamowienieStan jest w stanie niezarzadzalnym
-    }
-    
-    public void removeEnote(Enote enote) {
-        if (null == enoteState) {
-            throw new IllegalArgumentException("Brak wczytanego zamowienia do usuniecia");
-        }
-        if (!enoteState.equals(enote)) {
-            throw new IllegalArgumentException("Usuwane zamowienie niezgodne z wczytanym");
-        }
-        // Zamowienie otrzymane z warstwy widoku bylo prezentowane tylko do odczytu, sprawdzona zostala identycznosc obiektow
-        // zatem zamowienieStan jest tozsame z tym co chce usunac klient
-        if (enote.isConfirmed()) {
-            throw new IllegalArgumentException("Usuwane zamowienie jest juz zatwierdzone");
-        }
-        enoteFacade.remove(enote);//ZamowienieFacade dziedziczy metodę remove() z AbstractFacade, metoda ta sama wywołuje merge() przed usunięciem, więc nie musimy dołączać encji do bieżącego kontekstu trwałości
-    }
+//    public Enote getEnoteToChange(Long idEnote) {
+//        enoteState = enoteFacade.find(idEnote);
+//        return enoteState;
+//    }
+//    
+//    public void confirmEnote(Enote enote) throws AppBaseException {
+//        if (null == enoteState) {
+//            throw EnoteException.createWithNoStateInEJBEndpoint(enote);
+//        }
+//        if (!enoteState.equals(enote)) {
+//            throw EnoteException.createWithInvalidStateInEJBEndpoint(enote);
+//        }
+//        // Zamowienie otrzymane z warstwy widoku bylo prezentowane tylko do odczytu, sprawdzona zostala identycznosc obiektow
+//        // zatem zamowienieStan jest tozsame z tym co potwierdzil pracownik
+//        enoteManager.confirmEnote(enoteState); //encja  zamowienieStan jest w stanie niezarzadzalnym
+//    }
+//    
+//    public void removeEnote(Enote enote) {
+//        if (null == enoteState) {
+//            throw new IllegalArgumentException("Brak wczytanego zamowienia do usuniecia");
+//        }
+//        if (!enoteState.equals(enote)) {
+//            throw new IllegalArgumentException("Usuwane zamowienie niezgodne z wczytanym");
+//        }
+//        // Zamowienie otrzymane z warstwy widoku bylo prezentowane tylko do odczytu, sprawdzona zostala identycznosc obiektow
+//        // zatem zamowienieStan jest tozsame z tym co chce usunac klient
+//        if (enote.isConfirmed()) {
+//            throw new IllegalArgumentException("Usuwane zamowienie jest juz zatwierdzone");
+//        }
+//        enoteFacade.remove(enote);//ZamowienieFacade dziedziczy metodę remove() z AbstractFacade, metoda ta sama wywołuje merge() przed usunięciem, więc nie musimy dołączać encji do bieżącego kontekstu trwałości
+//    }
     
 //	@Interceptors(PerformanceInterceptor.class)
     public void createEnote(Enote enote) throws AppBaseException {
-        enoteFacade.create(enote);
+        enoteFacade.createEnote(enote);
     }
     
 //    public void odswiezCenyProduktow(Enote enote) {
@@ -77,9 +77,9 @@ public class EnoteEndpoint extends AbstractEndpoint implements SessionSynchroniz
         return enoteFacade.findAll();
     }
     
-    public List<Enote> getEnoteNotConfirmed() {
-        return enoteFacade.findEnoteNotConfirmed();
-    }
+//    public List<Enote> getEnoteNotConfirmed() {
+//        return enoteFacade.findEnoteNotConfirmed();
+//    }
     
 //    public List<Enote> getMyEnote() {
 //        return enoteFacade.findEnotes(accountEndpoint.getMyAccount().getLogin());

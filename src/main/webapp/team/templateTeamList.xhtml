@@ -7,19 +7,6 @@
 
                 <h:column id="teamName">
                     <f:facet name="header">${msg['team.teamName']}</f:facet>
-                    <h:outputText value="#{row.id}" />
-                </h:column>
-                <h:column id="owner">
-                    <f:facet name="header">${msg['enote.whoCreated']}</f:facet>
-                    <h:outputText value="#{row.loginEmployee}" />
-                </h:column>
-                <h:column id="confirmer">
-                    <f:facet name="header">${msg['enote.whoConfirmed']}</f:facet>
-                    <h:outputText value="#{row.loginManager}" />
-                </h:column>
-                <h:column id="state">
-                    <f:facet name="header">${msg['enote.state']}</f:facet>
-                    <h:selectBooleanCheckbox id="confirmed" value="#{row.confirmed}" disabled="true"/>    
-                        <h:outputLabel for="confirmed" value="${msg['order.confirmed']}" />    
+                    <h:outputText value="#{row.teamName}" />
                 </h:column>
 </ui:composition>

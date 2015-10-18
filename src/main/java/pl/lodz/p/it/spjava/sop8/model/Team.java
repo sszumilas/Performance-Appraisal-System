@@ -7,7 +7,6 @@ package pl.lodz.p.it.spjava.sop8.model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,13 +15,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -32,26 +31,23 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 //@MappedSuperclass
 @Table(name = "TEAM", schema = "SOP")
+@NamedQueries({
+    @NamedQuery(name = "Team.findAll", query = "SELECT t FROM Team t"),
+    @NamedQuery(name = "Team.findById", query = "SELECT t FROM Team t WHERE t.id = :id"),
+    @NamedQuery(name = "Team.findByTeamName", query = "SELECT t FROM Team t WHERE t.teamName = :teamName")})
 @TableGenerator(name = "TeamIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Team", initialValue = 100)
 //@XmlRootElement
 public class Team implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-//    @Column(nullable = false)
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "TeamIdGen")
     private Long id;
-//    @Id
-//    @Basic(optional = false)
-//    @NotNull
-//    @Column(nullable = false)
-//    private Long id;
-//    @Basic(optional = false)
-//    @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "TEAMNAME", nullable = false, length = 255)
+    @Column(name = "TEAM_NAME", nullable = false, length = 255)
     private String teamName;
     @OneToMany(mappedBy = "teamIdFk")
     private List<Personaldata> personaldataList;
@@ -71,13 +67,8 @@ public class Team implements Serializable {
         this.teamName = teamName;
     }
 
-
-//    public Long getId() {
-//        return id;
-//    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Long getId() {
+        return id;
     }
 
     public String getTeamName() {
@@ -124,15 +115,10 @@ public class Team implements Serializable {
         }
         return true;
     }
-    
-//    @PostConstruct
-//public void init() {
-//    teamName = new Team();
-//}
 
     @Override
     public String toString() {
         return "pl.lodz.p.it.spjava.Team[ id=" + id + " ]";
     }
-    
+
 }

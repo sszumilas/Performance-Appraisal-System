@@ -50,4 +50,16 @@ public class TeamSession implements Serializable{
     Team getTeamEdit() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    Team getTeam() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void createTeam(Team team) {
+        
+    }
+
+    List<Team> matchTeam(String requestTeamName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

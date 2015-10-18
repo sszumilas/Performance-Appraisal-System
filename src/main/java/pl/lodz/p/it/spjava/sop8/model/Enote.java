@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import static pl.lodz.p.it.spjava.sop8.model.SOPJavaDB_PU.Account_.login;
 
 /**
  *
@@ -31,58 +32,113 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Cacheable(false)
-@Table(name= "ENOTE", schema = "SOP")
+@Table(name= "Enote")
 
 @TableGenerator(name = "EnoteIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Enote", initialValue = 200)
 //@XmlRootElement
 public class Enote implements Serializable {
-    private static final long serialVersionUID = 1L;
+    
+        public Enote() {
+    }
+        
+    protected Object getBusinessKey() {
+        return login;
+    }
+//    private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
-//    @Column(nullable = false)
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "EnoteIdGen")
+    @Column(name = "id", updatable = false)
+    @GeneratedValue(strategy = GenerationType.TABLE, 
+            generator = "EnoteIdGen")
     private Long id;
+    
+    
+    
+    
+//    private static final long serialVersionUID = 1L;
+//    @Id
+//    @Basic(optional = false)
+//    @NotNull
+////    @Column(nullable = false)
+////    @Column(name = "ID")
+//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "EnoteIdGen")
+//    private Long id;
+//    @Size(max = 255)
+////    @Column(length = 255)
+//    @Column(name = "ACHIEVEMENTS")
+//    private String achievements;
+//    @Size(max = 255)
+////    @Column(length = 255)
+//    @Column(name = "ASPIRATION")
+//    private String aspiration;
+////    @Temporal(TemporalType.DATE)
+////    private Date date;
+//    @Size(max = 255)
+////    @Column(length = 255)
+//    @Column(name = "IMPROVEMENT")
+//    private String improvement;
+//    @Column(name = "MOBILITY")
+//    private Short mobility;
+//    @Size(max = 255)
+////    @Column(length = 255)
+//    @Column(name = "NACTIVITY")
+//    private String nactivity;
+//    @Size(max = 255)
+////    @Column(length = 255)
+//    @Column(name = "PROMISES")
+//    private String promises;
+//    @Size(max = 255)
+////    @Column(length = 255)
+//    @Column(name = "TARGET")
+//    private String target;
+//    @Basic(optional = false)
+//    @NotNull
+//    @Column(nullable = false)
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date saved;
+//    @JoinColumn(name = "EMPLOYEE_ID_FK", referencedColumnName = "ID")
+//    @ManyToOne
+//    private Account employeeIdFk;
+
+    
     @Size(max = 255)
-//    @Column(length = 255)
-    @Column(name = "ACHIEVEMENTS")
+    @Column(length = 255)
     private String achievements;
     @Size(max = 255)
-//    @Column(length = 255)
-    @Column(name = "ASPIRATION")
+    @Column(length = 255)
     private String aspiration;
-//    @Temporal(TemporalType.DATE)
-//    private Date date;
+    @Temporal(TemporalType.DATE)
+    private Date date;
     @Size(max = 255)
-//    @Column(length = 255)
-    @Column(name = "IMPROVEMENT")
+    @Column(length = 255)
     private String improvement;
-    @Column(name = "MOBILITY")
     private Short mobility;
     @Size(max = 255)
-//    @Column(length = 255)
-    @Column(name = "NACTIVITY")
+    @Column(length = 255)
     private String nactivity;
     @Size(max = 255)
-//    @Column(length = 255)
-    @Column(name = "PROMISES")
+    @Column(length = 255)
     private String promises;
     @Size(max = 255)
-//    @Column(length = 255)
-    @Column(name = "TARGET")
+    @Column(length = 255)
     private String target;
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date saved;
+    private Integer version;
     @JoinColumn(name = "EMPLOYEE_ID_FK", referencedColumnName = "ID")
     @ManyToOne
     private Account employeeIdFk;
-
-    public Enote() {
-    }
+    
+    
+    
+    
+    
+    
+    
+//    public Enote() {
+//    }
 
     public Enote(Long id) {
         this.id = id;

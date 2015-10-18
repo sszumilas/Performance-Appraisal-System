@@ -81,28 +81,28 @@ public class EnoteSession implements Serializable {
 //        resetCreateEnote();
 //    }
 
-    public String getEnoteToConfirm(Enote enote) {
-        this.enoteChange = enoteEndpoint.getEnoteToChange(enote.getId());
-        return "confirmEnote";
-    }
-
-//    public String pobierzZamowienieDoUsuniecia(Zamowienie zam) {
-//        this.zamowienieZmiana = zamowienieEndpoint.pobierzZamowienieDoZmian(zam.getId());
-//        return "deleteOrder";
+//    public String getEnoteToConfirm(Enote enote) {
+//        this.enoteChange = enoteEndpoint.getEnoteToChange(enote.getId());
+//        return "confirmEnote";
 //    }
-
-    public String confirmUploadEnote() {
-        try {
-            enoteEndpoint.confirmEnote(enoteChange);
-            return "success";
-        } catch (AppBaseException abe) {
-            Logger.getLogger(EnoteSession.class.getName()).log(Level.SEVERE, "Zgłoszenie w metodzie akcji zatwierdzPobraneZamowienie wyjatku typu: ", abe.getClass());
-            if (ContextUtils.isInternationalizationKeyExist(abe.getMessage())) {
-                ContextUtils.emitInternationalizedMessage(null , abe.getMessage()); //wyjątki aplikacyjne powinny przenosić jedynie klucz do internacjonalizacji
-            }
-            return null;
-        }
-    }
+//
+////    public String pobierzZamowienieDoUsuniecia(Zamowienie zam) {
+////        this.zamowienieZmiana = zamowienieEndpoint.pobierzZamowienieDoZmian(zam.getId());
+////        return "deleteOrder";
+////    }
+//
+//    public String confirmUploadEnote() {
+//        try {
+//            enoteEndpoint.confirmEnote(enoteChange);
+//            return "success";
+//        } catch (AppBaseException abe) {
+//            Logger.getLogger(EnoteSession.class.getName()).log(Level.SEVERE, "Zgłoszenie w metodzie akcji zatwierdzPobraneZamowienie wyjatku typu: ", abe.getClass());
+//            if (ContextUtils.isInternationalizationKeyExist(abe.getMessage())) {
+//                ContextUtils.emitInternationalizedMessage(null , abe.getMessage()); //wyjątki aplikacyjne powinny przenosić jedynie klucz do internacjonalizacji
+//            }
+//            return null;
+//        }
+//    }
 
     public String createEnote() {
         try {

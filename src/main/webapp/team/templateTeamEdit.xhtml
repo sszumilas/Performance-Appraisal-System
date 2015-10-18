@@ -6,13 +6,16 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <h:outputLabel value="#{msg['team.teamName']} *" for="teamName" />
-    <h:inputText id="teamName" value="#{pageBean.team.teamName}" title="#{msg['team.teamName']}" required="true" >
+    <h:inputText id="teamName" value="#{createTeamPageBean.team.teamName}" title="#{msg['team.teamName']}" required="true" >
             <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
     <!--<f:validateLength minimum="3" maximum="32" />-->
     </h:inputText>
-<!--    <h:message for="teamName" />-->
+    <h:message for="teamName" />
 
 
 <!--    <h:message for="telephone" />-->
+
+
+
 
 </ui:composition>

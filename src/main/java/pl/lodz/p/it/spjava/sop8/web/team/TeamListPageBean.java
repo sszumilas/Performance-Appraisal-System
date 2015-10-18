@@ -7,7 +7,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import pl.lodz.p.it.spjava.sop8.model.Account;
 import pl.lodz.p.it.spjava.sop8.model.Team;
+import pl.lodz.p.it.spjava.sop8.web.account.AccountSession;
 import pl.lodz.p.it.spjava.sop8.web.enote.EnoteSession;
 
 /**
@@ -21,46 +23,64 @@ public class TeamListPageBean {
 
     public TeamListPageBean() {
     }
-        private String requestTeamName= "";
+        private String requestTeamName = "";
 
-    /**
-     * Get the value of requestTeamName
-     *
-     * @return the value of requestTeamName
-     */
     public String getRequestTeamName() {
         return requestTeamName;
     }
-
-    /**
-     * Set the value of requestTeamName
-     *
-     * @param requestTeamName new value of requestTeamName
-     */
     public void setRequestTeamName(String requestTeamName) {
         this.requestTeamName = requestTeamName;
     }
+    public void refresh() {
+        initModel();
+    }
 
+    public void clear() {
+        requestTeamName = "";
+    }
     
-        private String teamDataModel;
+    
+    @PostConstruct
+    private void initModel() {
+        team = teamSession.matchTeam(requestTeamName);
+        teamDataModel = new ListDataModel<Team>(team);
+    }
+    @ManagedProperty(value = "#{teamSession}")
+    private TeamSession teamSession;
+
+    public void setTeamSession(TeamSession teamSession) {
+        this.teamSession = teamSession;
+    }
+    private List<Team> team;
+    private DataModel<Team> teamDataModel;
+
+    public DataModel<Team> getTeamsDataModel() {
+        return teamDataModel;
+    }
+    
+}
+    
+    
+    
+//        private String teamDataModel;
 
     /**
      * Get the value of teamDataModel
      *
      * @return the value of teamDataModel
      */
-    public String getTeamDataModel() {
-        return teamDataModel;
-    }
-
-    /**
-     * Set the value of teamDataModel
-     *
-     * @param teamDataModel new value of teamDataModel
-     */
-    public void setTeamDataModel(String teamDataModel) {
-        this.teamDataModel = teamDataModel;
-    }
+//    public String getTeamDataModel() {
+//        return teamDataModel;
+//    }
+//
+//    /**
+//     * Set the value of teamDataModel
+//     *
+//     * @param teamDataModel new value of teamDataModel
+//     */
+//    public void setTeamDataModel(String teamDataModel) {
+//        this.teamDataModel = teamDataModel;
+//    }
 
 //@PostConstruct
 //public void init() {
@@ -76,10 +96,10 @@ public class TeamListPageBean {
 //public void init() {
 //    teamName = new TeamName();
 
-    public TeamListPageBean(String teamDataModel) {
-        this.teamDataModel = teamDataModel;
-    }
-}
+//    public TeamListPageBean(String teamDataModel) {
+//        this.teamDataModel = teamDataModel;
+//    }
+//}
     
     
 //    @PostConstruct

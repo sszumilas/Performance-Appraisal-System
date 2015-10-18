@@ -8,35 +8,35 @@
 
 
     <h:outputLabel value="#{msg['enote.achievements']} *" for="achievements" />
-    <h:inputText id="name" value="#{pageBean.enote.achievements}" title="#{msg['enote.achievements']}" >
+    <h:inputText id="name" value="#{createEnotePageBean.enote.achievements}" title="#{msg['enote.achievements']}" >
         <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
         <!--<f:validateLength minimum="3" maximum="32" />-->
     </h:inputText>
     <h:message for="achievements" />
 
     <h:outputLabel value="#{msg['enote.aspiration']}" for="aspiration" />
-    <h:inputText id="aspiration" value="#{pageBean.enote.aspiration}" title="#{msg['enote.aspiration']}" >
+    <h:inputText id="aspiration" value="#{createEnotePageBean.enote.aspiration}" title="#{msg['enote.aspiration']}" >
     </h:inputText>
     <h:message for="aspiration" />
 
     <h:outputLabel value="#{msg['enote.improvement']}" for="improvement" />
-    <h:inputText id="improvement" value="#{pageBean.enote.improvement}" title="#msg['enote.improvement']}"> 
+    <h:inputText id="improvement" value="#{createEnotePageBean.enote.improvement}" title="#msg['enote.improvement']}"> 
     </h:inputText>
     <h:message for="improvement" />
     <h:outputLabel value="#{msg['enote.mobility']}" for="mobility" />
-    <h:inputText id="mobility" value="#{pageBean.enote.mobility}" title="#msg['enote.mobility']}"> 
+    <h:inputText id="mobility" value="#{createEnotePageBean.enote.mobility}" title="#msg['enote.mobility']}"> 
     </h:inputText>
     <h:message for="mobility" />
     <h:outputLabel value="#{msg['enote.nactivity']}" for="nactivity" />
-    <h:inputText id="nactivity" value="#{pageBean.enote.nactivity}" title="#msg['enote.nactivity']}"> 
+    <h:inputText id="nactivity" value="#{createEnotePageBean.enote.nactivity}" title="#msg['enote.nactivity']}"> 
     </h:inputText>
     <h:message for="nactivity" />
     <h:outputLabel value="#{msg['enote.promises']}" for="promises" />
-    <h:inputText id="promises" value="#{pageBean.enote.promises}" title="#msg['enote.promises']}"> 
+    <h:inputText id="promises" value="#{createEnotePageBean.enote.promises}" title="#msg['enote.promises']}"> 
     </h:inputText>
     <h:message for="promises" />
     <h:outputLabel value="#{msg['enote.target']}" for="target" />
-    <h:inputText id="target" value="#{pageBean.enote.target}" title="#msg['enote.target']}"> 
+    <h:inputText id="target" value="#{createEnotePageBean.enote.target}" title="#msg['enote.target']}"> 
     </h:inputText>
     <h:message for="target" />
 </ui:composition>

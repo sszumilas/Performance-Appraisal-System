@@ -35,8 +35,8 @@ public class ConfirmEnotePageBean {
         return enote;
     }
 
-    public String enoteEnote() {
-        return enoteSession.confirmUploadEnote();
-    }
+//    public String enoteEnote() {
+//        return enoteSession.confirmUploadEnote();
+//    }
 
 }

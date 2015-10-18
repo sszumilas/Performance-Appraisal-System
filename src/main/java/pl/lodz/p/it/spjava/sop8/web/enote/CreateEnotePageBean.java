@@ -24,10 +24,10 @@ public class CreateEnotePageBean {
         this.enoteSession = enoteSession;
     }
 
-    private Enote enote;
+    private Enote enote = new Enote();
 
     public Enote getEnote() {
-        return enoteSession.getEnoteCreate();
+        return enote;
     }
 
     public String createEnote() {
@@ -36,20 +36,10 @@ public class CreateEnotePageBean {
 
     public String account;
 
-    /**
-     * Get the value of account
-     *
-     * @return the value of account
-     */
     public String getAccount() {
         return account;
     }
 
-    /**
-     * Set the value of account
-     *
-     * @param account new value of account
-     */
     public void setAccount(String account) {
         this.account = account;
     }
