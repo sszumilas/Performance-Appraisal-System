@@ -7,42 +7,67 @@
 
 
 
-    <h:outputLabel value="#{msg['mnote.achievements']} *" for="achievements" />
-    <h:inputText id="name" value="#{pageBean.mnote.achievements}" title="#{msg['mnote.achievements']}" >
-        <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
-        <!--<f:validateLength minimum="3" maximum="32" />-->
-    </h:inputText>
+    <h:outputLabel value="#{msg['mnote.achievements']}" for="achievements" />
+    <h:inputTextarea id="achievements" value="#{pageBean.mnote.achievements}" title="#{msg['mnote.achievements']}" rows="4" cols="80">
+    </h:inputTextarea>
     <h:message for="achievements" />
 
     <h:outputLabel value="#{msg['mnote.aspiration']}" for="aspiration" />
-    <h:inputText id="aspiration" value="#{pageBean.mnote.aspiration}" title="#{msg['mnote.aspiration']}" >
-    </h:inputText>
+    <h:inputTextarea id="aspiration" value="#{pageBean.mnote.aspiration}" title="#{msg['mnote.aspiration']}"  rows="4" cols="80">
+    </h:inputTextarea>
     <h:message for="aspiration" />
 
     <h:outputLabel value="#{msg['mnote.improvement']}" for="improvement" />
-    <h:inputText id="improvement" value="#{pageBean.mnote.improvement}" title="#msg['mnote.improvement']}"> 
-    </h:inputText>
+    <h:inputTextarea id="improvement" value="#{pageBean.mnote.improvement}" title="#{msg['mnote.improvement']}" rows="4" cols="80"> 
+    </h:inputTextarea>
     <h:message for="improvement" />
-    <h:outputLabel value="#{msg['enote.nactivity']}" for="nactivity" />
-    <h:inputText id="nactivity" value="#{pageBean.mnote.nactivity}" title="#msg['enote.nactivity']}"> 
-    </h:inputText>
+
+    <h:outputLabel value="#{msg['mnote.nactivity']}" for="nactivity" />
+    <h:inputTextarea id="nactivity" value="#{pageBean.mnote.nactivity}" title="#{msg['enote.nactivity']}" rows="4" cols="80"> 
+    </h:inputTextarea>
     <h:message for="nactivity" />
-    <h:outputLabel value="#{msg['mnote.note']}" for="note" />
-    <h:inputText id=note" value="#{pageBean.mnote.note}" title="#msg['mnote.note']}"> 
-    </h:inputText>
+
+    <h:outputLabel value="#{msg['mnote.note']} *" for="note" />
+    <h:selectOneMenu value="#{pageBean.mnote.note}" id="note" converter="omnifaces.SelectItemsConverter">
+        <f:selectItem itemValue="1" itemLabel="#{msg['mnote.noNote1']}"/>
+        <f:selectItem itemValue="2" itemLabel="#{msg['mnote.note2']}"/>
+        <f:selectItem itemValue="3" itemLabel="#{msg['mnote.note3']}"/>
+        <f:selectItem itemValue="4" itemLabel="#{msg['mnote.note4']}"/>
+    </h:selectOneMenu>
     <h:message for="note" />
+    
+    <h:outputLabel value="#{msg['mnote.noteA']} *" for="noteA" />
+    <h:selectOneMenu value="#{pageBean.mnote.noteA}" id="noteA" converter="omnifaces.SelectItemsConverter">
+        <f:selectItem itemValue="1" itemLabel="#{msg['mnote.noNote1']}"/>
+        <f:selectItem itemValue="2" itemLabel="#{msg['mnote.noteA2']}"/>
+        <f:selectItem itemValue="3" itemLabel="#{msg['mnote.noteA3']}"/>
+        <f:selectItem itemValue="4" itemLabel="#{msg['mnote.noteA4']}"/>
+    </h:selectOneMenu>
+    <h:message for="noteA" />
+
     <h:outputLabel value="#{msg['mnote.potent']}" for="potent" />
-    <h:inputText id=potent" value="#{pageBean.mnote.potent}" title="#msg['mnote.potent']}"> 
-    </h:inputText>
+    <h:selectOneListbox value="#{pageBean.mnote.potent}" id="potent" converter="omnifaces.SelectItemsConverter">
+        <f:selectItem itemValue="1" itemLabel="#{msg['mnote.noPotent']}"/>
+        <f:selectItem itemValue="2" itemLabel="#{msg['mnote.pot1']}"/>
+        <f:selectItem itemValue="3" itemLabel="#{msg['mnote.pot2']}"/>
+        <f:selectItem itemValue="4" itemLabel="#{msg['mnote.pot3']}"/>
+    </h:selectOneListbox>
     <h:message for="potent" />
+
     <h:outputLabel value="#{msg['mnote.promises']}" for="promises" />
-    <h:inputText id="promises" value="#{pageBean.mnote.promises}" title="#msg['mnote.promises']}"> 
-    </h:inputText>
+    <h:inputTextarea id="promises" value="#{pageBean.mnote.promises}" title="#{msg['mnote.promises']}" rows="4" cols="80"> 
+    </h:inputTextarea>
     <h:message for="promises" />
-    <h:outputLabel value="#{msg['mnote.summary']}" for="summary" />
-    <h:inputText id="summary" value="#{pageBean.mnote.summary}" title="#msg['mnote.summary']}"> 
-    </h:inputText>
+
+    <h:outputLabel value="#{msg['mnote.summary']} *" for="summary" />
+    <h:inputTextarea id="summary" value="#{pageBean.mnote.summary}" title="#{msg['mnote.summary']}" rows="4" cols="80"> 
+    </h:inputTextarea>
     <h:message for="summary" />
+
+    <h:outputLabel value="#{msg['mnote.target']}" for="target" />
+    <h:inputTextarea id="target" value="#{pageBean.mnote.target}" title="#{msg['mnote.target']}" rows="4" cols="80"> 
+    </h:inputTextarea>
+    <h:message for="target" />
 </ui:composition>
 
 

@@ -6,7 +6,7 @@
     
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pl.lodz.p.it.spjava.sop8</groupId>
+    <groupId>pl.lodz.p.it.spjava</groupId>
     <artifactId>SOP8</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -35,6 +35,16 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>2.1</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

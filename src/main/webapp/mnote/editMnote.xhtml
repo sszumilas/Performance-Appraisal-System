@@ -6,27 +6,26 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core">
 
-        <ui:param name="pageBean" value="#{edytujMojeZamowienieKlientPageBean}" />
+    <ui:param name="pageBean" value="#{editMnotePageBean}" />
 
     <ui:define name="top">
-        <p>${msg["main.page"]}/${msg["page.confirmRegister"]}</p>
+        <p>${msg["main.page"]}/${msg["page.editMnote"]}</p>
     </ui:define>
 
     <ui:define name="left">
         <ui:include src="../templates/menu.xhtml" /> 
     </ui:define>
     <ui:define name="content">
-        <h:form>
+        <h:form id="editMnoteForm" prependId="false">
+            <h:panelGrid columns="3">
 
-<ui:include src="templateMojeZamowienie.xhtml" />
+                <ui:include src="templateMnoteEdit.xhtml" />
+
+            </h:panelGrid>
             <br />
-            <h:commandButton action="#{edytujMojeZamowienieKlientPageBean.przeliczZamowienie()}" rendered="#{zamowienieSession.zamowienieSkladanieNiepuste}" value="#{msg['action.recalcOrder']}" />
+            <h:commandButton action="#{editMnotePageBean.editMnote()}" value="#{msg['action.editMnote']}" />
             <br />
-            <h:commandButton action="#{edytujMojeZamowienieKlientPageBean.resetujZamowienie()}" rendered="#{zamowienieSession.zamowienieSkladanieNiepuste}" value="#{msg['action.resetOrder']}" />
-            <br />
-            <h:commandButton action="#{edytujMojeZamowienieKlientPageBean.potwierdzSkladaneZamowienie()}" rendered="#{zamowienieSession.zamowienieSkladanieNiepuste}" value="#{msg['action.createOrder']}" />
-            <br />
-            <h:commandButton value="#{msg['action.backToList']}" action="productListKlient" immediate="true" />
+            <h:commandButton value="#{msg['action.cancel']}" action="cancelAction" immediate="true" />
         </h:form>
     </ui:define>
 

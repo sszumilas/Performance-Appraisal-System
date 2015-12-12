@@ -6,16 +6,14 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <h:outputLabel value="#{msg['team.teamName']} *" for="teamName" />
-    <h:inputText id="teamName" value="#{createTeamPageBean.team.teamName}" title="#{msg['team.teamName']}" required="true" >
-            <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
-    <!--<f:validateLength minimum="3" maximum="32" />-->
+    <h:inputText id="teamName" value="#{pageBean.team.teamName}" title="#{msg['team.teamName']}">
     </h:inputText>
-    <h:message for="teamName" />
-
-
-<!--    <h:message for="telephone" />-->
-
-
-
+    <h:message for="teamName" errorClass="red_alert"/>
+    
+    <h:outputLabel value="#{msg['team.teamManager']}" for="teamManager" />
+    <h:selectOneMenu value="#{pageBean.team.teamManagerIdFk}" id="teamManager" converter="omnifaces.SelectItemsConverter">
+        <f:selectItem itemValue="#{null}" itemLabel="#{msg['team.noManager']}"/>
+        <f:selectItems value="#{pageBean.accountList}" var="c" itemValue="#{c}" itemLabel="#{c.name} #{c.surname}"/>
+    </h:selectOneMenu>
 
 </ui:composition>

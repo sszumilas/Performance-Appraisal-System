@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="../templates/MainTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="top">
+        <p>${msg["main.page"]}</p>
+    </ui:define>
+
+
+    <ui:define name="left">
+        <ui:include src="../templates/menu.xhtml" />
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:inputTextarea id="nactivity" value="#{msg['intro']}" rows="14" cols="100" readonly="true"> 
+        </h:inputTextarea>
+
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <p align="right"><img src="../resources/css/Untit2.png"  width="600" height="60" alt="Untit"/></p>
+
+    </ui:define>
+
+</ui:composition>

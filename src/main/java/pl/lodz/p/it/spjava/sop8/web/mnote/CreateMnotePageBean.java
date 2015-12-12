@@ -1,58 +1,52 @@
 package pl.lodz.p.it.spjava.sop8.web.mnote;
 
-import pl.lodz.p.it.spjava.sop8.web.mnote.*;
+import java.util.Calendar;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import pl.lodz.p.it.spjava.sop8.model.Enote;
 import pl.lodz.p.it.spjava.sop8.model.Mnote;
 
-/**
- *
- * @author java
- */
 @ManagedBean(name = "createMnotePageBean")
 @RequestScoped
 public class CreateMnotePageBean {
     
-    public CreateMnotePageBean() {
-    }
-    
-    @ManagedProperty(value="#{mnoteSession}")
+  @ManagedProperty(value="#{mnoteSession}")
     private MnoteSession mnoteSession;
+
+  @PostConstruct
+  public void init(){
+      enote = mnoteSession.findEnote(mnoteSession.getNoteAccount(), (long) Calendar.getInstance().get(Calendar.YEAR));
+  }
+  
+    private Mnote mnote = new Mnote();
+    private Enote enote;
 
     public void setMnoteSession(MnoteSession mnoteSession) {
         this.mnoteSession = mnoteSession;
     }
-
-    private Mnote mnote;
-
+    
     public Mnote getMnote() {
-        return mnoteSession.getMnoteCreate();
+        return mnote;
     }
 
+    public void setMnote(Mnote mnote) {
+        this.mnote = mnote;
+    }
+
+    public Enote getEnote() {
+        return enote;
+    }
+    
     public String createMnote() {
-        return mnoteSession.createMnote();
+        Long year =(long) Calendar.getInstance().get(Calendar.YEAR);
+        mnote.setNoteYear(year);
+        mnote.setConfirmId(mnoteSession.getUserAccount());
+        mnote.setEmployeeIdFk(mnoteSession.getNoteAccount());
+        mnote.setConfirmation(new Date());
+        mnoteSession.createMnote(mnote);
+        return "success";
     }
-
-    public String account;
-
-    /**
-     * Get the value of account
-     *
-     * @return the value of account
-     */
-    public String getAccount() {
-        return account;
-    }
-
-    /**
-     * Set the value of account
-     *
-     * @param account new value of account
-     */
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
 }

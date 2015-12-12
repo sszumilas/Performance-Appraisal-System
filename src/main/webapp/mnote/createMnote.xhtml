@@ -6,7 +6,7 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core">
 
-        <ui:param name="pageBean" value="#{createMnotePageBean}" />
+    <ui:param name="pageBean" value="#{createMnotePageBean}" />
 
     <ui:define name="top">
         <p>${msg["main.page"]}/${msg["page.createMnote"]}</p>
@@ -16,19 +16,25 @@
         <ui:include src="../templates/menu.xhtml" /> 
     </ui:define>
     <ui:define name="content">
-        <h:form id="createMnoteForm" prependId="false">
+        
+        <h:form id="viewEnoteForm">
             <h:panelGrid columns="3">
-
-<ui:include src="templateMnoteEdit.xhtml" />
-
+                    <ui:include src="../enote/templateEnoteView.xhtml" />
             </h:panelGrid>
+        </h:form>
+        <br/><br/>
+        <h:form id="createMnoteForm">
+            <h:panelGrid>
+                <h:panelGrid columns="3">
 
+                    <ui:include src="templateMnoteEdit.xhtml" />
 
-
-            <br />
-            <h:commandButton action="#{createMnotePageBean.createMnote()}" value="#{msg['action.createMnote']}" />
-            <br />
-            <h:commandButton value="#{msg['action.cancel']}" action="cancelAction" immediate="true" />
+                </h:panelGrid>
+                <br />
+                <h:commandButton action="#{createMnotePageBean.createMnote()}" value="#{msg['action.createMnote']}" />
+                <br />
+                <h:commandButton value="#{msg['action.cancel']}" action="cancelAction" immediate="true" />
+            </h:panelGrid>
         </h:form>
     </ui:define>
 

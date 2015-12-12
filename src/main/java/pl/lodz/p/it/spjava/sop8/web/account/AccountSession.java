@@ -2,170 +2,56 @@ package pl.lodz.p.it.spjava.sop8.web.account;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import pl.lodz.p.it.spjava.sop8.ejb.endpoints.AccountEndpoint;
+import pl.lodz.p.it.spjava.sop8.ejb.endpoints.TeamEndpoint;
 import pl.lodz.p.it.spjava.sop8.exception.AppBaseException;
-import pl.lodz.p.it.spjava.sop8.exception.AccountException;
-import pl.lodz.p.it.spjava.sop8.model.Admin;
-import pl.lodz.p.it.spjava.sop8.model.Employee;
 import pl.lodz.p.it.spjava.sop8.model.Account;
-import pl.lodz.p.it.spjava.sop8.model.Enote;
-import pl.lodz.p.it.spjava.sop8.model.Manager;
+import pl.lodz.p.it.spjava.sop8.model.Team;
 import pl.lodz.p.it.spjava.sop8.web.utils.ContextUtils;
 
-/**
- *
- * @author java
- */
 @ManagedBean(name = "accountSession")
 @SessionScoped
 public class AccountSession implements Serializable {
 
-    static String saveAccountEdit(Account account) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @EJB
     private AccountEndpoint accountEndpoint;
 
+    @EJB
+    private TeamEndpoint teamEndpoint;
+    
     public String resetSession() {
         ContextUtils.invalidateSession();
-        /* Poprawne zakończenie sesji wymaga wymuszenia nowego żądania na przeglądarce, stąd metoda ta
-         * prowadzi do przypadku nawigacji z elementem <redirect />.
-         * UWAGA: integracja logowania typu BASIC z przeglądarką powoduje, że czasem mimo to "wylogowanie" jest nieskuteczne - 
-         * powstaje nowa sesja już zalogowanego użytkownika. Dlatego bezpieczniej jest stosować uwierzytelnianie przez formularz (FORM).
-         */
         return "cancelAction";
     }
 
-    public String getMyName() {
-        return ContextUtils.getUserName();
+    @PostConstruct
+    public void construct() {
+        userAccount = getMyAccount();
     }
-    private Employee employeeRegistration;
-    private Employee employeeCreate;
-    private Manager managerCreate;
-    private Admin adminCreate;
+
     private Account accountEdit;
-    private Account accountChangePassword;
 
-    public Account getAccountChangePassword() {
-        return accountChangePassword;
-    }
-
+    
+    private Account userAccount;
+    
     public Account getAccountEdit() {
         return accountEdit;
     }
 
-    public Employee getEmployeeRegistration() {
-        return employeeRegistration;
+    public List<Team> getTeamList() {
+        return teamEndpoint.getAllTeam();
     }
 
-    public AccountSession() {
+    public Account getUserAccount() {
+        return userAccount;
     }
 
-    public String createEmployee(Employee employee) {
-        try {
-            employeeCreate = employee;
-            accountEndpoint.createAccount(employeeCreate);
-            employeeCreate = null;
-            return "success";
-        } catch (AccountException ae) {
-            if (AccountException.KEY_DB_CONSTRAINT.equals(ae.getMessage())) {
-                ContextUtils.emitInternationalizedMessage("login", AccountException.KEY_DB_CONSTRAINT); //wyjątki aplikacyjne powinny przenosić jedynie klucz do internacjonalizacji
-            } else {
-                Logger.getLogger(AccountSession.class.getName()).log(Level.SEVERE, "Zgłoszenie w metodzie akcji utworzKlienta wyjatku: ", ae);               
-            }
-            return null;
-        } catch (AppBaseException abe) {
-            Logger.getLogger(AccountSession.class.getName()).log(Level.SEVERE, "Zgłoszenie w metodzie akcji utworzKlienta wyjatku typu: ", abe.getClass());
-            if (ContextUtils.isInternationalizationKeyExist(abe.getMessage())) {
-                ContextUtils.emitInternationalizedMessage(null , abe.getMessage()); //wyjątki aplikacyjne powinny przenosić jedynie klucz do internacjonalizacji
-            }
-            return null;
-        }
-    }
-
-    public String createManager(Manager manager) {
-        try {
-            managerCreate = manager;
-            accountEndpoint.createAccount(managerCreate);
-            managerCreate = null;
-            return "success";
-        } catch (AccountException ae) {
-            if (AccountException.KEY_DB_CONSTRAINT.equals(ae.getMessage())) {
-                ContextUtils.emitInternationalizedMessage("login", AccountException.KEY_DB_CONSTRAINT); //wyjątki aplikacyjne powinny przenosić jedynie klucz do internacjonalizacji
-            } else {
-                Logger.getLogger(AccountSession.class.getName()).log(Level.SEVERE, "Zgłoszenie w metodzie akcji utworzPracownika wyjatku: ", ae);               
-            }
-            return null;
-        } catch (AppBaseException abe) {
-            Logger.getLogger(AccountSession.class.getName()).log(Level.SEVERE, "Zgłoszenie w metodzie akcji utworzPracownika wyjatku typu: ", abe.getClass());
-            if (ContextUtils.isInternationalizationKeyExist(abe.getMessage())) {
-                ContextUtils.emitInternationalizedMessage(null , abe.getMessage()); //wyjątki aplikacyjne powinny przenosić jedynie klucz do internacjonalizacji
-            }
-            return null;
-        }
-    }
-
-    public String createAdmin(Admin admin) {
-        try {
-            adminCreate = admin;
-            accountEndpoint.createAccount(adminCreate);
-            adminCreate = null;
-            return "success";
-        } catch (AccountException ae) {
-            if (AccountException.KEY_DB_CONSTRAINT.equals(ae.getMessage())) {
-                ContextUtils.emitInternationalizedMessage("login", AccountException.KEY_DB_CONSTRAINT); //wyjątki aplikacyjne powinny przenosić jedynie klucz do internacjonalizacji
-            } else {
-                Logger.getLogger(AccountSession.class.getName()).log(Level.SEVERE, "Zgłoszenie w metodzie akcji utworzAdministratora wyjatku: ", ae);               
-            }
-            return null;
-        } catch (AppBaseException abe) {
-            Logger.getLogger(AccountSession.class.getName()).log(Level.SEVERE, "Zgłoszenie w metodzie akcji utworzAdministratora wyjatku typu: ", abe.getClass());
-            if (ContextUtils.isInternationalizationKeyExist(abe.getMessage())) {
-                ContextUtils.emitInternationalizedMessage(null , abe.getMessage()); //wyjątki aplikacyjne powinny przenosić jedynie klucz do internacjonalizacji
-            }
-            return null;
-        }
-    }
-
-    public String confirmRegistrationEmployee(Employee employee) {
-        this.employeeRegistration = employee;
-        return "confirmRegister";
-    }
-
-    public String beginChangePassword(Account account) {
-        this.accountChangePassword = account;
-        return "changePassword";
-    }
-//    public String createEnote(Enote enote) {
-//        this.createEnote = enote;
-//        return "createEnote";
-//    }
-
-    public String registerEmployee() {
-        try {
-            accountEndpoint.registerEmployee(employeeRegistration);
-            employeeRegistration = null;
-            return "success";
-        } catch (AccountException ae) {
-            if (AccountException.KEY_DB_CONSTRAINT.equals(ae.getMessage())) {
-                ContextUtils.emitInternationalizedMessage("login", AccountException.KEY_DB_CONSTRAINT); //wyjątki aplikacyjne powinny przenosić jedynie klucz do internacjonalizacji
-            } else {
-                Logger.getLogger(AccountSession.class.getName()).log(Level.SEVERE, "Zgłoszenie w metodzie akcji rejestrujKlienta wyjatku: ", ae);               
-            }
-            return null;
-        } catch (AppBaseException abe) {
-            Logger.getLogger(AccountSession.class.getName()).log(Level.SEVERE, "Zgłoszenie w metodzie akcji rejestrujKlienta wyjatku typu: ", abe.getClass());
-            if (ContextUtils.isInternationalizationKeyExist(abe.getMessage())) {
-                ContextUtils.emitInternationalizedMessage(null , abe.getMessage()); //wyjątki aplikacyjne powinny przenosić jedynie klucz do internacjonalizacji
-            }
-            return null;
-        }
+    public void edit(Account account) throws AppBaseException {
+        accountEndpoint.edit(account);
     }
 
     public void activateAccount(Account Account) {
@@ -188,38 +74,16 @@ public class AccountSession implements Serializable {
         return "editAccount";
     }
 
-    public String saveAccountAfterEdit(Account Account) throws AppBaseException {
-        accountEndpoint.saveAccountAfterEdit(Account);
-        return "success";
-    }
-
-    public String changePasswordAccount(String password) {
-        accountEndpoint.changePassword(accountChangePassword, password);
-        return "success";
-    }
-
-    public String changeMyPassword(String old, String neu) {
-        accountEndpoint.changeMyPassword(old, neu);
-        return "success";
-    }
-
     public List<Account> getAllAccounts() {
         return accountEndpoint.getAllAccounts();
     }
-
-    public List<Account> matchAccounts(String loginSample, String nameSample, String surnameSample, String emailSample) {
-        return accountEndpoint.matchAccounts(loginSample, nameSample, surnameSample, emailSample);
+    
+    public List<Account> getAccounts() {
+        return accountEndpoint.getAccounts(userAccount);
     }
 
+    
     public Account getMyAccount() {
         return accountEndpoint.getMyAccount();
-    }
-
-    String createEnote(Account rowData) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    String createMnote(Account rowData) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

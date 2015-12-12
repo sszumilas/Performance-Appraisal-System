@@ -5,14 +5,12 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core">
 
-                    <h:outputLabel value="#{msg['team.teamName']}" for="teamName" />
-                    <h:outputText id="teamName" value="#{createTeamPageBean.team.teamName}" title="#{msg['team.teamName']}" />
-                    <h:message for="teamName" />
-
-                    <h:outputLabel value="#{msg['team.team_manager_id_fk']}" for="team_manager_id_fk" />
-                    <h:outputText id="team_manager_id_fk" value="#{createTeamPageBean.team.team_manager_id_fk}" title="#{msg['team.team_manager_id_fk']}" />
-                    <h:message for="team_manager_id_fk" />
-
-
+    <h:outputLabel value="#{msg['team.teamName']} *" for="teamName" />
+    <h:outputText id="teamName" value="#{pageBean.team.teamName}" title="#{msg['team.teamName']}" />
+    <h:message for="teamName" />
+    
+    <h:outputLabel value="#{msg['team.teamManager']}" for="teamManager" />
+    <h:outputText id="teamManager" value="#{pageBean.team.teamManagerIdFk.name} #{pageBean.team.teamManagerIdFk.surname}" title="#{msg['team.teamManager']}" />
+    <h:message for="teamManager" />
 
 </ui:composition>

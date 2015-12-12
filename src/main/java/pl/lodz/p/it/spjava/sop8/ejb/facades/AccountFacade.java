@@ -2,30 +2,32 @@ package pl.lodz.p.it.spjava.sop8.ejb.facades;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.eclipse.persistence.exceptions.DatabaseException;
 import pl.lodz.p.it.spjava.sop8.ejb.interceptor.LoggingInterceptor;
-import pl.lodz.p.it.spjava.sop8.ejb.interceptor.PerformanceInterceptor;
 import pl.lodz.p.it.spjava.sop8.exception.AppBaseException;
 import pl.lodz.p.it.spjava.sop8.exception.AccountException;
 import pl.lodz.p.it.spjava.sop8.model.Account;
 import pl.lodz.p.it.spjava.sop8.model.SOPJavaDB_PU.Account_;
+import pl.lodz.p.it.spjava.sop8.model.Team;
 
 @Stateless
+@PermitAll
 @LocalBean
-@Interceptors({LoggingInterceptor.class, PerformanceInterceptor.class})
+@Interceptors({LoggingInterceptor.class})
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class AccountFacade extends AbstractFacade<Account> {
 
@@ -47,12 +49,37 @@ public class AccountFacade extends AbstractFacade<Account> {
             super.create(entity);
             em.flush();
         } catch (PersistenceException ex) {
-            if (ex.getCause() instanceof DatabaseException && ex.getCause().getCause() instanceof SQLIntegrityConstraintViolationException) {
+            if (ex.getCause() instanceof DatabaseException || ex.getCause() instanceof SQLIntegrityConstraintViolationException) {
                 throw AccountException.createWithDbCheckConstraintKey(entity, ex);
             } else {
                 throw ex;
             }
         }
+    }
+
+    public List<Account> getAllOfType(String type) {
+        TypedQuery<Account> tq = em.createNamedQuery("Account.findByType", Account.class);
+        tq.setParameter("x", type);
+        return tq.getResultList();
+    }
+
+    public List<Account> findAccounts(Account account) {
+        
+        // jeżeli manager będzie miał więcej niż jeden zespół, to poniże pojawi się wyjątek nonUniqueResultException
+        // w przypadku zmian pomysł: pobrać listę teamów zarządzanych przez managera,
+        // przeiterować przez listę i wyniki z każdej iteracji zapisać do odrębnej listy
+        // zwrócić listę
+        Team team;
+        try{
+        TypedQuery<Team> tqt = em.createNamedQuery("Team.findManager", Team.class);
+        tqt.setParameter("x", account.getId());// do sprawdzenia wyświetlania listy
+        team = tqt.getSingleResult();
+        }catch(NoResultException nre){
+            return null;
+        }
+        TypedQuery<Account> tq = em.createNamedQuery("Account.findAccounts", Account.class);
+        tq.setParameter("x", team.getId());// do sprawdzenia wyświetlania listy
+        return tq.getResultList();
     }
 
     public Account findLogin(String login) {
@@ -65,27 +92,4 @@ public class AccountFacade extends AbstractFacade<Account> {
         return tq.getSingleResult();
     }
 
-    public List<Account> matchAccounts(String loginModel, String nameModel, String surnameModel, String emailModel) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Account> query = cb.createQuery(Account.class);
-        Root<Account> from = query.from(Account.class);
-        query = query.select(from);
-        Predicate criteria = cb.conjunction();
-        if (null != loginModel && !(loginModel.isEmpty())) {
-            criteria = cb.and(criteria, cb.like(from.get(Account_.login), '%' + loginModel + '%'));
-        }
-        if (null != nameModel && !(nameModel.isEmpty())) {
-            criteria = cb.and(criteria, cb.like(from.get(Account_.name), '%' + nameModel + '%'));
-        }
-        if (null != surnameModel && !(surnameModel.isEmpty())) {
-            criteria = cb.and(criteria, cb.like(from.get(Account_.surname), '%' + surnameModel + '%'));
-        }
-        if (null != emailModel && !(emailModel.isEmpty())) {
-            criteria = cb.and(criteria, cb.like(from.get(Account_.email), '%' + emailModel + '%'));
-        }
-
-        query = query.where(criteria);
-        TypedQuery<Account> tq = em.createQuery(query);
-        return tq.getResultList();
-    }
 }

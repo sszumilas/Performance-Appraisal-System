@@ -1,7 +1,7 @@
 
 #top {
     position: relative;
-    background: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.5);
     color: black;
     padding: 5px;
     margin: 0px 0px 10px 0px;
@@ -10,7 +10,7 @@
 #bottom {
     position: relative;
     background: rgba(255,255,255,0.7);
-    background-color: #AFAFAF;
+    background-color: #ffffff;
     color: black;
     padding: 5px;
     margin: 10px 0px 0px 0px;
@@ -20,7 +20,7 @@
 #left {
     float: left;
    
-    background:  rgba(255,255,255,0.7);
+    background:  rgba(255,255,255,0.5);
 /*background-color: #327dff;*/
 /*    color: #ece3a5;*/
     padding: 5px;
@@ -54,6 +54,7 @@
     position: relative;
     background-color: rgba(255,255,255,0.7);;
     padding: 5px;
+    margin: 10px 10px 10px 10px;
     min-height: 480px;
 }
 
@@ -90,4 +91,11 @@
     color: #ff9933;
   font-weight : bold;
   text-decoration : underline;    
+}
+.red_alert {
+    color: #ff9933;
+    background-color: #ffffff;
+    font-size: small;
+    font-weight: bold;
+    text-decoration: underline;
 }

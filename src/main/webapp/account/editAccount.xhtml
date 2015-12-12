@@ -17,25 +17,11 @@
         <ui:include src="../templates/menu.xhtml" />
     </ui:define>
     <ui:define name="content">
-        <h:form prependId="false">
+        <h:form id="editForm" prependId="false">
             <h:panelGrid columns="3">
 
                 <ui:include src="templateLoginView.xhtml"/>
-
                 <ui:include src="templateDataCommonEdit.xhtml"/>
-
-
-                <c:if test="#{editAccountPageBean.employee}">
-                    <ui:include src="templateDataEmployyeEdit.xhtml" />
-                </c:if>
-
-                <c:if test="#{editAccountPageBean.manager}">
-                    <ui:include src="templateDataManagerEdit.xhtml"/>
-                </c:if>
-
-                <c:if test="#{editAccountPageBean.admin}">
-                    <ui:include src="templateDataAdminEdit.xhtml"/>
-                </c:if>
 
             </h:panelGrid>
             <br />

@@ -6,33 +6,40 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <h:outputLabel value="#{msg['account.name']} *" for="name" />
-    <h:inputText id="name" value="#{pageBean.account.name}" title="#{msg['account.name']}" required="true" >
+    <h:inputText id="name" value="#{pageBean.account.name}" title="#{msg['account.name']}">
             <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
     <!--<f:validateLength minimum="3" maximum="32" />-->
     </h:inputText>
-    <h:message for="name" />
+    <h:message for="name" errorClass="red_alert"/>
 
     <h:outputLabel value="#{msg['account.surname']} *" for="surname" />
-    <h:inputText id="surname" value="#{pageBean.account.surname}" title="#{msg['account.surname']}" required="true" >
+    <h:inputText id="surname" value="#{pageBean.account.surname}" title="#{msg['account.surname']}">
         <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
         <!--<f:validateLength minimum="3" maximum="32" />-->
     </h:inputText>
-    <h:message for="surname" />
+    <h:message for="surname" errorClass="red_alert"/>
 
     <h:outputLabel value="#{msg['account.email']} *" for="email" />
-    <h:inputText id="email" value="#{pageBean.account.email}" title="#{msg['account.email']}" required="true" >
+    <h:inputText id="email" value="#{pageBean.account.email}" title="#{msg['account.email']}">
         <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
 <!--        <f:validateLength minimum="6" maximum="64" />
         <f:validateRegex pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$" />-->
     </h:inputText>
-    <h:message for="email" />
+    <h:message for="email" errorClass="red_alert"/>
 
     <h:outputLabel value="#{msg['account.telephone']}" for="telephone" />
-    <h:inputText id="telephone" value="#{pageBean.account.telephone}" title="#{msg['account.telephone']}" required="false" >
+    <h:inputText id="telephone" value="#{pageBean.account.telephone}" title="#{msg['account.telephone']}">
         <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
         <!--<f:validateLength maximum="12" />-->
     </h:inputText>
 
     <h:message for="telephone" />
+    
+    <h:outputLabel value="#{msg['team.teamName']}" for="team" />
+    <h:selectOneMenu value="#{pageBean.account.teamIdFk}" id="team" converter="omnifaces.SelectItemsConverter">
+        <f:selectItem itemValue="#{null}" itemLabel="#{msg['team.noTeam']}"/>
+        <f:selectItems value="#{pageBean.teamList}" var="c" itemValue="#{c}" itemLabel="#{c.teamName}"/>
+    </h:selectOneMenu>
+    <h:message for="team" />
 
 </ui:composition>

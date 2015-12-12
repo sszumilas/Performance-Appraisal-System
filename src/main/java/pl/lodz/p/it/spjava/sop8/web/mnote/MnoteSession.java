@@ -1,151 +1,125 @@
 package pl.lodz.p.it.spjava.sop8.web.mnote;
 
-import pl.lodz.p.it.spjava.sop8.web.mnote.*;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import pl.lodz.p.it.spjava.sop8.ejb.endpoints.EnoteEndpoint;
 import pl.lodz.p.it.spjava.sop8.ejb.endpoints.MnoteEndpoint;
 import pl.lodz.p.it.spjava.sop8.exception.AppBaseException;
-import pl.lodz.p.it.spjava.sop8.exception.MnoteException;
 import pl.lodz.p.it.spjava.sop8.model.*;
-//import sample.jee.shop.web.produkt.ListaProduktowKlientPageBean;
-import pl.lodz.p.it.spjava.sop8.web.utils.ContextUtils;
+import pl.lodz.p.it.spjava.sop8.web.account.AccountSession;
 
-/**
- *
- * @author java
- */
 @ManagedBean(name = "mnoteSession")
 @SessionScoped
 public class MnoteSession implements Serializable {
 
-    private static final Logger loger = Logger.getLogger(MnoteSession.class.getSimpleName());
+    private static final Logger logger = Logger.getLogger(MnoteSession.class.getSimpleName());
     @EJB
     private MnoteEndpoint mnoteEndpoint;
-//    private Mnote zamowienieZmiana;
-    private Mnote mnoteCreate;
-    private Mnote mnoteChange;
+    
+    @EJB
+    private EnoteEndpoint enoteEndpoint;
+    
+    @ManagedProperty(value = "#{accountSession}")
+    private AccountSession accountSession;
 
-    public void resetCreateMnote() {
-        mnoteCreate = new Mnote();
+    public void setAccountSession(AccountSession accountSession) {
+        this.accountSession = accountSession;
     }
 
-//    public void dodajPozycjeDoZamowienia(Produkt p) {
-        // Zapewnienie unikatowości produktów na liście zamówienia
-        // Gwarantuje to równiez baza danych, ale chcemy uniknąć tego problemu jak najwcześniej
-
-//        for (PozycjaZamowienia poz : zamowienieSkladanie.getPozycjeZamowienia()) {
-//            if (poz.getProdukt().equals(p)) {
-//                poz.setIlosc(poz.getIlosc() + 1);
-//                ContextUtils.emitInternationalizedMessage(ListaProduktowKlientPageBean.GENERAL_MSG_ID, "product.increased.in.order");
-//                return;
-//            }
-//        }
-//        PozycjaZamowienia poz = new PozycjaZamowienia();
-//        poz.setProdukt(p);
-//        poz.setIlosc(1);
-//        poz.setCena(p.getCena());
-//        // Pamietaj o obustronnym składaniu relacji!
-//        poz.setZamowienie(zamowienieSkladanie);
-//        zamowienieSkladanie.getPozycjeZamowienia().add(poz);
-//        ContextUtils.emitInternationalizedMessage(ListaProduktowKlientPageBean.GENERAL_MSG_ID, ("product.added.to.order"));
-//    }
-//
-//    public boolean isZamowienieSkladanieNiepuste() {
-//        return (zamowienieSkladanie.getLiczbaPozycji() > 0);
-//
-//    }
-//
-//    public void odswiezCenyProduktow() {
-//        zamowienieEndpoint.odswiezCenyProduktow(zamowienieSkladanie);
-//    }
-
-    public Mnote getMnoteCreate() {
-        return mnoteCreate;
+    @PostConstruct
+    public void init() {
+        userAccount = accountSession.getUserAccount();
     }
 
-//    public void setZamowienieSkladanie(Zamowienie zamowienieSkladanie) {
-//        this.zamowienieSkladanie = zamowienieSkladanie;
-//    }
-//    public Zamowienie getZamowienieZmiana() {
-//        return zamowienieZmiana;
-//    }
+    private Account userAccount;
+    private Account noteAccount;
+    private Account searchedNotesAccount;
+    private Mnote mnoteEdit;
+    private Mnote mnoteView;
+    private Mnote mnoteReport;
 
-//    public void setZamowienieZatwierdzanie(Zamowienie zamowienieZatwierdzanie) {
-//        this.zamowienieZatwierdzanie = zamowienieZatwierdzanie;
-//    }
-//    public EnoteSession() {
-//        resetCreateEnote();
-//    }
-
-    public String getMnoteToConfirm(Mnote mnote) {
-        this.mnoteChange = mnoteEndpoint.getMnoteToChange(mnote.getId());
-        return "confirmMnote";
+    public Mnote getMnoteReport() {
+        return mnoteReport;
     }
 
-//    public String pobierzZamowienieDoUsuniecia(Zamowienie zam) {
-//        this.zamowienieZmiana = zamowienieEndpoint.pobierzZamowienieDoZmian(zam.getId());
-//        return "deleteOrder";
-//    }
+    public void setMnoteReport(Mnote mnoteReport) {
+        this.mnoteReport = mnoteReport;
+    }
+    
+    public Account getSearchedNotesAccount() {
+        return searchedNotesAccount;
+    }
 
-    public String confirmUploadMnote() {
+    public void setSearchedNotesAccount(Account searchedNotesAccount) {
+        this.searchedNotesAccount = searchedNotesAccount;
+    }
+
+    public Account getNoteAccount() {
+        return noteAccount;
+    }
+
+    public void setNoteAccount(Account noteAccount) {
+        this.noteAccount = noteAccount;
+    }
+    
+    public Account getUserAccount() {
+        return userAccount;
+    }
+
+    public Mnote getMnoteEdit() {
+        return mnoteEdit;
+    }
+
+    public void setMnoteEdit(Mnote mnoteEdit) {
+        this.mnoteEdit = mnoteEdit;
+    }
+
+    public Mnote getMnoteView() {
+        return mnoteView;
+    }
+
+    public void setMnoteView(Mnote mnoteView) {
+        this.mnoteView = mnoteView;
+    }
+
+    public List<Mnote> pullMnoteList() {
+        return mnoteEndpoint.pullMnoteList(searchedNotesAccount);
+    }
+    
+    public List<Enote> pullEnoteList() {
+        return enoteEndpoint.pullEnoteList(searchedNotesAccount);
+    }
+
+    public void createMnote(Mnote mnote) {
         try {
-            mnoteEndpoint.confirmMnote(mnoteChange);
-            return "success";
-        } catch (AppBaseException abe) {
-            Logger.getLogger(MnoteSession.class.getName()).log(Level.SEVERE, "Zgłoszenie w metodzie akcji zatwierdzPobraneZamowienie wyjatku typu: ", abe.getClass());
-            if (ContextUtils.isInternationalizationKeyExist(abe.getMessage())) {
-                ContextUtils.emitInternationalizedMessage(null , abe.getMessage()); //wyjątki aplikacyjne powinny przenosić jedynie klucz do internacjonalizacji
-            }
-            return null;
-        }
-    }
-
-    public String createMnote() {
-        try {
-            mnoteEndpoint.createMnote(mnoteCreate);
-            resetCreateMnote();
-            return "success";
+            Long year =(long) Calendar.getInstance().get(Calendar.YEAR);
+            Enote enote = enoteEndpoint.findEnote(mnote.getEmployeeIdFk(), year).get(0);
+            enote.setConfirmed(true);
+            enoteEndpoint.editEnote(enote);
+            mnoteEndpoint.createMnote(mnote);
         } catch (AppBaseException ex) {
             Logger.getLogger(MnoteSession.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
     }
 
-//    public String usunPobraneZamowienie(Enote enote) {
-//        zamowienieEndpoint.usunZamowienie(zamowienieZmiana);
-//        return "success";
-//    }
-
-//    public List<Enote> getAllEnotes() {
-//        return enoteEndpoint.getAllEnotes();
-//    }
-//
-//    public List<Enote> getEnotesNotConfirmed() {
-//        return enoteEndpoint.getEnotesNotConfirmed();
-//    }
-//
-//    public List<Enote> getMyEnotes() {
-//        return enoteEndpoint.getMyEnotes();
-//    }
-//
-//    public List<Enote> getMyEnotesNotConfirmed() {
-//        return enoteEndpoint.getMyEnoteNotConfirmed();
-//    }
-
-    Mnote getMnoteChange() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void editMnote(Mnote mnote) throws AppBaseException {
+        mnoteEndpoint.editMnote(mnote);
     }
-
-    void confirmMnote(Mnote rowData) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public boolean isNoted(Account account, Long year){
+       return mnoteEndpoint.isNoted(account, year);
     }
-
-    List<Mnote> matchMnotes(String requestAchievements) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public Enote findEnote(Account account, Long year){
+        return enoteEndpoint.findEnote(account, year).get(0);
     }
+    
 }

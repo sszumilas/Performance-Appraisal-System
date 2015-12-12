@@ -1,51 +1,32 @@
-
 package pl.lodz.p.it.spjava.sop8.ejb.endpoints;
 
 import java.util.List;
-import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
-import javax.interceptor.Interceptors;
-import pl.lodz.p.it.spjava.sop8.ejb.facades.AdminFacade;
-import pl.lodz.p.it.spjava.sop8.ejb.facades.EmployeeFacade;
 import pl.lodz.p.it.spjava.sop8.ejb.facades.AccountFacade;
-import pl.lodz.p.it.spjava.sop8.ejb.facades.ManagerFacade;
-import pl.lodz.p.it.spjava.sop8.ejb.interceptor.LoggingInterceptor;
-import pl.lodz.p.it.spjava.sop8.ejb.managers.AccountsManager;
 import pl.lodz.p.it.spjava.sop8.exception.AppBaseException;
-import pl.lodz.p.it.spjava.sop8.model.Employee;
 import pl.lodz.p.it.spjava.sop8.model.Account;
-import pl.lodz.p.it.spjava.sop8.web.utils.AccountUtils;
-import pl.lodz.p.it.spjava.sop8.web.utils.HashedPasswordGenerator;
 
 /**
  *
- * @author java
+ * @author Szymek
  */
 @Stateful
 @LocalBean
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class AccountEndpoint extends AbstractEndpoint implements SessionSynchronization {
-    @EJB
-    private AccountsManager accountsManager;
-    
+
     @EJB
     private AccountFacade accountFacade;
-    
-    @EJB
-    private EmployeeFacade employeeFacade;
-    
-    @EJB
-    private ManagerFacade managerFacade;
-    
-    @EJB
-    private AdminFacade adminFacade;
-    
+
     @Resource
     private SessionContext sctx;
-    
+
     private Account accountState;
 
+    @PermitAll
     public Account getMyAccount() {
         return findLogin(sctx.getCallerPrincipal().getName());
     }
@@ -53,73 +34,48 @@ public class AccountEndpoint extends AbstractEndpoint implements SessionSynchron
     public void createAccount(Account account) throws AppBaseException {
         account.setActive(false);
         account.setConfirmed(false);
-        account.setPassword(AccountUtils.calculateHashPassword(account.getPassword()));
         accountFacade.create(account);
     }
 
-    public void registerEmployee(Employee employee) throws AppBaseException {
-        employee.setActive(false);
-        employee.setConfirmed(false);
-        employee.setPassword(AccountUtils.calculateHashPassword(employee.getPassword()));
-        employeeFacade.create(employee);
-    }
-    
-    public void activateAccount(Account account){
+    @RolesAllowed("Admin")
+    public void activateAccount(Account account) {
         Account a = accountFacade.find(account.getId());
         a.setActive(true);
     }
-    
-    public void deactivateAccount(Account account){
+
+    public void deactivateAccount(Account account) {
         Account a = accountFacade.find(account.getId());
         a.setActive(false);
     }
-    
-    public void confirmAccount(Account account){
+
+    public void confirmAccount(Account account) {
         Account a = accountFacade.find(account.getId());
         a.setConfirmed(true);
     }
-    
+
+    public void edit(Account account) throws AppBaseException {
+        accountFacade.edit(account);
+    }
+
     public List<Account> getAllAccounts() {
         return accountFacade.findAll();
     }
-    
-    public List<Account> matchAccounts(String loginSample, String nameSample, String surnameSample, String emailSample) {
-        return accountFacade.matchAccounts(loginSample, nameSample, surnameSample, emailSample);
+
+    public List<Account> getAllOfType(String type) {
+        return accountFacade.getAllOfType(type);
     }
-    
+
     public Account findLogin(String login) {
         return accountFacade.findLogin(login);
     }
-    
+
     public Account getAccountToEdit(Account account) {
         accountState = findLogin(account.getLogin());
         return accountState;
     }
-    
-    public void saveAccountAfterEdit(Account account) throws AppBaseException {
-        if (null == accountState) {
-            throw new IllegalArgumentException("Brak wczytanego konta do modyfikacji");
-        }
-        if (!accountState.equals(account)) {
-            throw new IllegalArgumentException("Modyfikowane konto niezgodne z wczytanym");
-        }
-        // Przepisz te dane konta, które podlegają edycji (sa dostepne na formularzu)
-        AccountUtils.rewriteDataAfterEdit(account, accountState);
-        //wykonej merge() na encji Konto, aby weszła ona w stan zarządzany przez obecny kontekst trwalości
-        accountFacade.edit(accountState);
-        //usuń stan konta po zakończonej operacji - unika błędnego wielokrotnego wykonania
-        accountState=null;
+
+    public List<Account> getAccounts(Account account) {
+        return accountFacade.findAccounts(account);
     }
-    
-        public void changeMyPassword(String old, String neu) {
-        Account myAccount = getMyAccount();
-        if(!myAccount.getPassword().equals(AccountUtils.calculateHashPassword(old)))
-            throw new IllegalArgumentException("Podane dotychczasowe hasło nie zgadza się");
-        myAccount.setPassword(AccountUtils.calculateHashPassword(neu));
-    }
-    
-    public void changePassword(Account account, String password) {
-        Account a = accountFacade.find(account.getId());
-        a.setPassword(AccountUtils.calculateHashPassword(password));
-    }
+
 }

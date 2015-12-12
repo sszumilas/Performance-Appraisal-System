@@ -1,47 +1,43 @@
 package pl.lodz.p.it.spjava.sop8.web.enote;
 
-import javax.annotation.PostConstruct;
+import java.util.Calendar;
+import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import pl.lodz.p.it.spjava.sop8.model.Enote;
 
-/**
- *
- * @author java
- */
+
 @ManagedBean(name = "createEnotePageBean")
 @RequestScoped
 public class CreateEnotePageBean {
     
-    public CreateEnotePageBean() {
-    }
-    
-    @ManagedProperty(value="#{enoteSession}")
+  @ManagedProperty(value="#{enoteSession}")
     private EnoteSession enoteSession;
+
+    private Enote enote = new Enote();
 
     public void setEnoteSession(EnoteSession enoteSession) {
         this.enoteSession = enoteSession;
     }
-
-    private Enote enote = new Enote();
-
+    
     public Enote getEnote() {
         return enote;
     }
 
+    public void setEnote(Enote enote) {
+        this.enote = enote;
+    }
+    
+    public boolean renderEnote(){
+        return enoteSession.renderEnote();
+    }
+
     public String createEnote() {
-        return enoteSession.createEnote();
+        Long year =(long) Calendar.getInstance().get(Calendar.YEAR);
+        enote.setNoteYear(year);
+        enote.setSaved(new Date());
+        enoteSession.createEnote(enote);
+        return "success";
     }
-
-    public String account;
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
 }

@@ -7,39 +7,43 @@
     <h:form id="menu">
         <ul>
             <li><h:outputLink value="../main/index.xhtml" >${msg["main.page"]}</h:outputLink></li>
-<!--            <li><h:outputLink value="../account/registerEmployee.xhtml" >${msg["menu.register"]}</h:outputLink></li>-->
             <li>${msg["menu.accounts"]}</li>
             <ul>
-                <li><h:outputLink value="../account/accountsList.xhtml" >${msg["menu.accounts.list"]}</h:outputLink></li>
-                <li><h:outputLink value="../account/createEmployee.xhtml" >${msg["menu.accounts.createemployee"]}</h:outputLink></li>
-                <li><h:outputLink value="../account/createManager.xhtml" >${msg["menu.accounts.createmanager"]}</h:outputLink></li>
-                <li><h:outputLink value="../account/createAdmin.xhtml" >${msg["menu.accounts.createadmin"]}</h:outputLink></li>
+                <h:outputLink value="../account/accountsList.xhtml" rendered="#{request.isUserInRole('Admin') or request.isUserInRole('Manager')}"><li>${msg["menu.accounts.list"]}</li></h:outputLink>
+                <li><h:outputLink value="../account/createAccount.xhtml" >${msg["menu.accounts.create.account"]}</h:outputLink></li>
+                <h:outputLink value="../account/changePassword.xhtml"  rendered="#{not empty request.remoteUser}"><li>${msg["menu.accounts.password.change"]}</li></h:outputLink>
             </ul>
+
+            <h:form rendered="#{not empty request.remoteUser}">
             <li>${msg["menu.notes"]}</li>
+            </h:form>
             <ul>
-                <li><h:outputLink value="../enote/enoteList.xhtml" >${msg["menu.enote.list"]}</h:outputLink></li>
-                <li><h:outputLink value="../mnote/mnoteList.xhtml" >${msg["menu.mnote.list"]}</h:outputLink></li>
-<!--                <li><h:outputLink value="../enote/editEnote.xhtml" >${msg["menu.enote.edit"]}</h:outputLink></li>-->
-                <li><h:outputLink value="../enote/createEnote.xhtml" >${msg["menu.enote.create"]}</h:outputLink></li>
+                <h:outputLink value="../enote/enoteList.xhtml" rendered="#{not empty request.remoteUser}"><li>${msg["menu.enote.list"]}</li></h:outputLink>
+                <h:outputLink value="../enote/createEnote.xhtml" rendered="#{not empty request.remoteUser}"><li>${msg["menu.enote.create"]}</li></h:outputLink>
             </ul>
+            <h:form rendered="#{request.isUserInRole('Admin')}">
             <li>${msg["menu.teams"]}</li>
+            </h:form>
             <ul>
-                <li><h:outputLink value="../team/teamList.xhtml" >${msg["menu.team.list"]}</h:outputLink></li>
-                <li><h:outputLink value="../team/createTeam.xhtml" >${msg["menu.team.create"]}</h:outputLink></li>
+                <h:outputLink value="../team/listTeam.xhtml" rendered="#{request.isUserInRole('Admin')}"><li>${msg["menu.team.list"]}</li></h:outputLink>
+                <h:outputLink value="../team/createTeam.xhtml" rendered="#{request.isUserInRole('Admin')}"><li>${msg["menu.team.create"]}</li></h:outputLink>
             </ul>
-            <br></br>
-            <br></br>
-            <br></br>
 
-            ${msg["myLogin"]} 
-            <br></br>
-            <b>
-            ${accountSession.myName}
-            </b>
-            <br></br>
-            <br></br>
+            <br/>
+            <h:outputLink value="../main/intro.xhtml" ><li>${msg["menu.enote.intro"]}</li> </h:outputLink>
+            <li><h:outputLink value="../main/credits.xhtml" >${msg["menu.about"]}</h:outputLink></li>
 
-            <h:commandLink action="#{logoutBean.logout}" value="Logout" />
+            <br></br>
+            <br></br><br/>
+
+            <h:form rendered="#{not empty request.remoteUser}">
+                ${msg["Loggedat"]}<br/>
+                #{accountSession.userAccount.name} #{accountSession.userAccount.surname}
+            </h:form>
+
+            <br/><br/>
+            <h:outputLink value="../main/start.xhtml" rendered="#{empty request.remoteUser}">${msg["menu.login"]}</h:outputLink>
+            <h:commandLink action="#{accountSession.resetSession()}" rendered="#{not empty request.remoteUser}">${msg["menu.logout"]}</h:commandLink>
 
 
         </ul>

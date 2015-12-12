@@ -3,12 +3,12 @@
               xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-    <application>
+<!--    <application>
         <resource-bundle>
             <base-name>/Bundle</base-name>
             <var>bundle</var>
         </resource-bundle>
-    </application>
+    </application>-->
     
     <application>
         <locale-config>
@@ -20,60 +20,62 @@
             <base-name>i18n.messages</base-name>
             <var>msg</var>
         </resource-bundle>
-        
-        
-        <message-bundle>
-            i18n.jsf_messages
-        </message-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
     </application>
         
     <navigation-rule>
+        <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>cancelAction</from-outcome>
             <to-view-id>/main/index.xhtml</to-view-id>
             <redirect />
-        </navigation-case>        
+        </navigation-case>
         <navigation-case>
-            <from-outcome>login</from-outcome>
-            <to-view-id>/login/login.xhtml</to-view-id>
+            <from-outcome>listAccounts</from-outcome>
+            <to-view-id>/account/accountsList.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>enotesList</from-outcome>
+            <to-view-id>/enote/enoteList.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editTeam</from-outcome>
+            <to-view-id>/team/editTeam.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+
+
+
+        <!--
+                <navigation-case>
+                    <from-outcome>loging</from-outcome>
+                    <to-view-id>/login/login.xhtml</to-view-id>
+                    <redirect />
+                </navigation-case>        
+        -->        
+        <navigation-case>
+            <from-outcome>j_security_check</from-outcome>
+            <to-view-id>/main/index.xhtml</to-view-id>
             <redirect />
         </navigation-case>        
-        <navigation-case>
-            <from-outcome>confirmRegister</from-outcome>
-            <to-view-id>/account/registerEmployeeConfirm.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>        
+    
         <navigation-case>
             <from-outcome>editAccount</from-outcome>
             <to-view-id>/account/editAccount.xhtml</to-view-id>
             <redirect />
         </navigation-case>        
+      
         <navigation-case>
             <from-outcome>changePassword</from-outcome>
             <to-view-id>/account/changePasswordAccount.xhtml</to-view-id>
             <redirect />
         </navigation-case>        
+        
         <navigation-case>
             <from-outcome>accountsList</from-outcome>
             <to-view-id>/account/accountsList.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>        
-        <navigation-case>
-            <from-outcome>confirmEnote</from-outcome>
-            <to-view-id>/enote/confirmEnote.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>        
-        <navigation-case>
-            <from-outcome>deleteEnote</from-outcome>
-            <to-view-id>/enote/deleteEnote.xhtml</to-view-id>
             <redirect />
         </navigation-case>        
         <navigation-case>
@@ -81,74 +83,53 @@
             <to-view-id>/enote/createEnote.xhtml</to-view-id>
             <redirect />
         </navigation-case>        
-        
+        <navigation-case>
+            <from-outcome>editEnote</from-outcome>
+            <to-view-id>/enote/editEnote.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>viewEnote</from-outcome>
+            <to-view-id>/enote/viewEnote.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>       
+       
+        <navigation-case>
+            <from-outcome>createMnote</from-outcome>
+            <to-view-id>/mnote/createMnote.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
         <navigation-case>
             <from-outcome>success</from-outcome>
             <to-view-id>/common/success.xhtml</to-view-id>
             <redirect />
         </navigation-case>
-    </navigation-rule>
-            
-    <navigation-rule>
-        <from-view-id>/enote/createEnote.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>logout</from-outcome>
-            <to-view-id>/main/index.xhtml</to-view-id>
+            <from-outcome>listTeam</from-outcome>
+            <to-view-id>/team/listTeam.xhtml</to-view-id>
+            <redirect />
         </navigation-case>
-    </navigation-rule>
-            
-    <application>
-        <el-resolver>pl.lodz.p.it.spjava.sop8.ejb.endpoints.util.JsfCrudELResolver</el-resolver>
-    </application>
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>welcome</from-outcome>
-            <to-view-id>/welcomeJSF.jsp</to-view-id>
+            <from-outcome>mnoteList</from-outcome>
+            <to-view-id>/mnote/mnoteList.xhtml</to-view-id>
+            <redirect />
         </navigation-case>
-    </navigation-rule>
-    <managed-bean>
-        <managed-bean-name>team</managed-bean-name>
-        <managed-bean-class>pl.lodz.p.it.spjava.sop8.ejb.endpoints.TeamController</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
-        <managed-bean-name>teamJpa</managed-bean-name>
-        <managed-bean-class>pl.lodz.p.it.spjava.sop8.ejb.facades.TeamFacade</managed-bean-class>
-    
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <converter>
-        <converter-for-class>pl.lodz.p.it.spjava.sop8.model.Team</converter-for-class>
-        <converter-class>pl.lodz.p.it.spjava.sop8.ejb.endpoints.TeamConverter</converter-class>
-    </converter>
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>team_create</from-outcome>
-            <to-view-id>/team/team/New.jsp</to-view-id>
+            <from-outcome>viewReport</from-outcome>
+            <to-view-id>/mnote/report.xhtml</to-view-id>
+            <redirect />
         </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>team_list</from-outcome>
-            <to-view-id>/team/team/List.jsp</to-view-id>
+            <from-outcome>mnotesList</from-outcome>
+            <to-view-id>/mnote/mnoteList.xhtml</to-view-id>
+            <redirect />
         </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>team_edit</from-outcome>
-            <to-view-id>/team/team/Edit.jsp</to-view-id>
+            <from-outcome>enoteRedir</from-outcome>
+            <to-view-id>/enote/enoteList.xhtml</to-view-id>
+            <redirect />
         </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-outcome>team_detail</from-outcome>
-            <to-view-id>/team/team/Detail.jsp</to-view-id>
-        </navigation-case>
+
     </navigation-rule>
 </faces-config>
 

@@ -27,7 +27,7 @@ public class HashedPasswordGenerator {
     
     public static void main(String[] args) {
         // można wygenerować dowolną liczbę haseł
-    calculateHashPassword("hasmanager");
+    calculateHashPassword("hasloo");
     calculateHashPassword("hasadmin");
     calculateHashPassword("hasemployee");
     

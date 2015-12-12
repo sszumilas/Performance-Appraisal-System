@@ -4,15 +4,15 @@
   <context-root>SOP8</context-root>
   <security-role-mapping>
     <role-name>Employee</role-name>
-    <group-name>EMPLOYEE</group-name>
+    <group-name>Employee</group-name>
   </security-role-mapping>
   <security-role-mapping>
     <role-name>Manager</role-name>
-    <group-name>MANAGER</group-name>
+    <group-name>Manager</group-name>
   </security-role-mapping>
   <security-role-mapping>
     <role-name>Admin</role-name>
-    <group-name>ADMIN</group-name>
+    <group-name>Admin</group-name>
   </security-role-mapping>
   <class-loader delegate="true"/>
   <jsp-config>

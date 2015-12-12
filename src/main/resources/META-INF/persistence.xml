@@ -1,41 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-    <persistence-unit name="SOPJavaDB_PU" transaction-type="JTA">
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <jta-data-source>jdbc/SOPJDBCJavaDB</jta-data-source>
-        <class>pl.lodz.p.it.spjava.sop8.model.Account</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Admin</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Employee</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Enote</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Manager</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Mnote</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Personaldata</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Team</class>
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
-        <shared-cache-mode>DISABLE_SELECTIVE</shared-cache-mode>
-        <properties>
-            <property name="eclipselink.canonicalmodel.subpackage" value="SOPJavaDB_PU"/>
-            <property name="eclipselink.logging.level" value="FINE"/>
-            <property name="eclipselink.ddl-generation" value="create-tables"/>
-        </properties>
-    </persistence-unit>
-    <persistence-unit name="SOPJavaDB_PU_Serializable" transaction-type="JTA">
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <jta-data-source>jdbc/SOPJDBCJavaDB_Serializable</jta-data-source>
-        <class>pl.lodz.p.it.spjava.sop8.model.Account</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Admin</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Employee</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Enote</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Manager</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Mnote</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Personaldata</class>
-        <class>pl.lodz.p.it.spjava.sop8.model.Team</class>
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
-        <shared-cache-mode>NONE</shared-cache-mode>
-        <properties>
-            <property name="eclipselink.canonicalmodel.subpackage" value="SOPJavaDB_PU_Serializable"/>
-            <property name="eclipselink.logging.level" value="FINE"/>
-
-        </properties>
-    </persistence-unit>
+  <persistence-unit name="SOPJavaDB_PU" transaction-type="JTA">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>jdbc/SOPJDBCJavaDB</jta-data-source>
+    <class>pl.lodz.p.it.spjava.sop8.model.Account</class>
+    <class>pl.lodz.p.it.spjava.sop8.model.Enote</class>
+    <class>pl.lodz.p.it.spjava.sop8.model.Mnote</class>
+    <class>pl.lodz.p.it.spjava.sop8.model.Team</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <shared-cache-mode>DISABLE_SELECTIVE</shared-cache-mode>
+    <validation-mode>NONE</validation-mode>
+    <properties>
+      <property name="eclipselink.canonicalmodel.subpackage" value="SOPJavaDB_PU"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+      <property name="eclipselink.ddl-generation" value="none"/>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+    </properties>
+  </persistence-unit>
 </persistence>

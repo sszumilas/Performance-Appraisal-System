@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.lodz.p.it.spjava.sop8.model;
 
 import java.io.Serializable;
@@ -22,38 +17,35 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author XXX
- */
+
 @Entity
-//@MappedSuperclass
 @Table(name = "Team")
-//@NamedQueries({
-//    @NamedQuery(name = "Team.findAll", query = "SELECT t FROM Team t"),
-////    @NamedQuery(name = "Team.findById", query = "SELECT t FROM Team t WHERE t.id = :id"),
-//    @NamedQuery(name = "Team.findByTeamName", query = "SELECT t FROM Team t WHERE t.teamName = :teamName")})
+@NamedQueries({
+    @NamedQuery(name = "Team.findManager", query = "SELECT t FROM Team t WHERE t.teamManagerIdFk.id = :x")})
 
 
 
 @TableGenerator(name = "TeamIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Team", initialValue = 300)
-//@XmlRootElement
-public class Team implements Serializable {
+public class Team extends AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "TeamIdGen")
     private Long id;
+    
     @Size(min = 1, max = 255)
-    @Column(name = "team_name", nullable = false, length = 255)
+    @Column(name = "team_name", nullable = false, length = 255, unique = true)
+    @NotNull(message="{constraint.notnull.team}")
     private String teamName;
+    
     @OneToMany(mappedBy = "teamIdFk")
-    private List<Personaldata> personaldataList;
+    private List<Account> accountList;
+    
     @JoinColumn(name = "team_manager_id_fk", referencedColumnName = "id")
     @ManyToOne
     private Account teamManagerIdFk;
@@ -77,18 +69,9 @@ public class Team implements Serializable {
     public String getTeamName() {
         return teamName;
     }
-
+    
     public void setTeamName(String teamName) {
         this.teamName = teamName;
-    }
-
-    @XmlTransient
-    public List<Personaldata> getPersonaldataList() {
-        return personaldataList;
-    }
-
-    public void setPersonaldataList(List<Personaldata> personaldataList) {
-        this.personaldataList = personaldataList;
     }
 
     public Account getTeamManagerIdFk() {
@@ -99,29 +82,12 @@ public class Team implements Serializable {
         this.teamManagerIdFk = teamManagerIdFk;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public List<Account> getAccountList() {
+        return accountList;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Team)) {
-            return false;
-        }
-        Team other = (Team) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setAccountList(List<Account> accountList) {
+        this.accountList = accountList;
     }
-
-    @Override
-    public String toString() {
-        return "pl.lodz.p.it.spjava.Team[ id=" + id + " ]";
-    }
-
+    
 }

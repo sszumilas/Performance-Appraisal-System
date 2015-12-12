@@ -6,81 +6,107 @@
 package pl.lodz.p.it.spjava.sop8.model;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author XXX
- */
+
 @Entity
-//@MappedSuperclass
-@Table(catalog = "", schema = "SOP")
-@XmlRootElement
-public class Mnote implements Serializable {
+@Table(name= "Mnote")
+@TableGenerator(name = "MnoteIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME",
+        valueColumnName = "ID_RANGE", pkColumnValue = "Mnote", initialValue = 200)
+@NamedQueries({
+    @NamedQuery(name = "Mnote.findByUser", query = "SELECT a FROM Mnote a WHERE a.employeeIdFk.id = :x"),
+    @NamedQuery(name = "Mnote.isNoted", query = "SELECT a FROM Mnote a WHERE a.employeeIdFk.id = :x AND a.noteYear = :y"),
+    @NamedQuery(name = "Mnote.findByYear", query = "SELECT a FROM Mnote a WHERE a.employeeIdFk.id = :x AND a.noteYear = :y")})
+public class Mnote extends AbstractEntity implements Serializable {
+    
     private static final long serialVersionUID = 1L;
+   
     @Id
-    @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.TABLE, 
+            generator = "MnoteIdGen")
     @Column(nullable = false)
     private Long id;
+    
     @Size(max = 255)
     @Column(length = 255)
     private String achievements;
+    
     @Size(max = 255)
     @Column(length = 255)
     private String aspiration;
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    
     @Size(max = 255)
     @Column(length = 255)
     private String improvement;
+    
     @Size(max = 255)
     @Column(length = 255)
     private String nactivity;
+    
+    @Column
     private Short note;
+    
+    @Column
+    private Short noteA;
+    
+    @Column
     private Short potent;
+    
     @Size(max = 255)
     @Column(length = 255)
     private String promises;
+    
     @Size(max = 255)
     @Column(length = 255)
     private String summary;
+    
     @Size(max = 255)
     @Column(length = 255)
     private String target;
-    private BigInteger version;
+    
     @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
+    @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date modification;
+    
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date confirmation;
+    
+    @NotNull
+    @Column(nullable = false)
+    private Long noteYear;
+    
     @JoinColumn(name = "MODIFICATION_ID", referencedColumnName = "ID")
     @ManyToOne
     private Account modificationId;
+    
     @JoinColumn(name = "CONFIRM_ID", referencedColumnName = "ID")
     @ManyToOne
+    @NotNull
     private Account confirmId;
+    
     @JoinColumn(name = "EMPLOYEE_ID_FK", referencedColumnName = "ID")
     @ManyToOne
+    @NotNull
     private Account employeeIdFk;
 
     public Mnote() {
@@ -99,11 +125,7 @@ public class Mnote implements Serializable {
     public Long getId() {
         return id;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    
     public String getAchievements() {
         return achievements;
     }
@@ -118,14 +140,6 @@ public class Mnote implements Serializable {
 
     public void setAspiration(String aspiration) {
         this.aspiration = aspiration;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getImprovement() {
@@ -150,6 +164,14 @@ public class Mnote implements Serializable {
 
     public void setNote(Short note) {
         this.note = note;
+    }
+    
+    public Short getNoteA() {
+        return noteA;
+    }
+
+    public void setNoteA(Short noteA) {
+        this.noteA = noteA;
     }
 
     public Short getPotent() {
@@ -184,14 +206,6 @@ public class Mnote implements Serializable {
         this.target = target;
     }
 
-    public BigInteger getVersion() {
-        return version;
-    }
-
-    public void setVersion(BigInteger version) {
-        this.version = version;
-    }
-
     public Date getModification() {
         return modification;
     }
@@ -206,6 +220,14 @@ public class Mnote implements Serializable {
 
     public void setConfirmation(Date confirmation) {
         this.confirmation = confirmation;
+    }
+
+    public Long getNoteYear() {
+        return noteYear;
+    }
+
+    public void setNoteYear(Long noteYear) {
+        this.noteYear = noteYear;
     }
 
     public Account getModificationId() {
@@ -231,46 +253,6 @@ public class Mnote implements Serializable {
     public void setEmployeeIdFk(Account employeeIdFk) {
         this.employeeIdFk = employeeIdFk;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Mnote)) {
-            return false;
-        }
-        Mnote other = (Mnote) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "pl.lodz.p.it.spjava.Mnote[ id=" + id + " ]";
-    }
-
-    public void setWhoCreate(Employee myAccountEmployee) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public boolean isConfirmed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setWhoConfirmed(Manager myAccountManager) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setConfirmed(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }

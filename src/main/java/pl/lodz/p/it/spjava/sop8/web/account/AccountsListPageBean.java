@@ -1,119 +1,102 @@
 package pl.lodz.p.it.spjava.sop8.web.account;
 
+import java.util.Calendar;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import pl.lodz.p.it.spjava.sop8.model.Account;
+import pl.lodz.p.it.spjava.sop8.web.enote.EnoteSession;
+import pl.lodz.p.it.spjava.sop8.web.mnote.MnoteSession;
 
-/**
- *
- * @author java
- */
 @ManagedBean(name = "accountsListPageBean")
 @RequestScoped
 public class AccountsListPageBean {
 
     public static final String GENERAL_MSG_ID = "accountsListForm:accountsList";
 
-    public AccountsListPageBean() {
-    }
-    private String requestLogin = "";
-    private String requestName = "";
-    private String requestSurname = "";
-    private String requestEmail = "";
+    @ManagedProperty(value = "#{accountSession}")
+    private AccountSession accountSession;
 
-    public String getRequestEmail() {
-        return requestEmail;
-    }
+    @ManagedProperty(value = "#{mnoteSession}")
+    private MnoteSession mnoteSession;
 
-    public void setRequestEmail(String requestEmail) {
-        this.requestEmail = requestEmail;
-    }
-
-    public String getRequestName() {
-        return requestName;
-    }
-
-    public void setRequestName(String requestName) {
-        this.requestName = requestName;
-    }
-
-    public String getRequestSurname() {
-        return requestSurname;
-    }
-
-    public void setRequestSurname(String requestSurname) {
-        this.requestSurname = requestSurname;
-    }
-
-    public String getRequestLogin() {
-        return requestLogin;
-    }
-
-    public void setRequestLogin(String requestLogin) {
-        this.requestLogin = requestLogin;
-    }
-
-    public void refresh() {
-        initModel();
-    }
-
-    public void clear() {
-        requestLogin = "";
-        requestName = "";
-        requestSurname = "";
-        requestEmail = "";
-    }
+    @ManagedProperty(value = "#{enoteSession}")
+    private EnoteSession enoteSession;
 
     @PostConstruct
     private void initModel() {
-        accounts = accountSession.matchAccounts(requestLogin, requestName, requestSurname, requestEmail);
-        accountsDataModel = new ListDataModel<Account>(accounts);
+        userAccount = accountSession.getMyAccount();
+        if ((accountSession.getUserAccount().getType()).equals("Admin")) {
+            accounts = accountSession.getAllAccounts();
+        } else {
+            accounts = accountSession.getAccounts();
+        }
     }
-    @ManagedProperty(value = "#{accountSession}")
-    private AccountSession accountSession;
+
+    public AccountsListPageBean() {
+    }
 
     public void setAccountSession(AccountSession accountSession) {
         this.accountSession = accountSession;
     }
+
+    public void setMnoteSession(MnoteSession mnoteSession) {
+        this.mnoteSession = mnoteSession;
+    }
+
+    public void setEnoteSession(EnoteSession enoteSession) {
+        this.enoteSession = enoteSession;
+    }
+
+    private Account userAccount;
     private List<Account> accounts;
-    private DataModel<Account> accountsDataModel;
 
-    public DataModel<Account> getAccountsDataModel() {
-        return accountsDataModel;
+    public Account getUserAccount() {
+        return userAccount;
     }
 
-    public void activateAccount() {
-        accountSession.activateAccount(accountsDataModel.getRowData());
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void activateAccount(Account acc) {
+        accountSession.activateAccount(acc);
         initModel();
     }
 
-    public void deactivateAccount() {
-        accountSession.deactivateAccount(accountsDataModel.getRowData());
+    public void deactivateAccount(Account acc) {
+        accountSession.deactivateAccount(acc);
         initModel();
     }
 
-    public void confirmAccount() {
-        accountSession.confirmAccount(accountsDataModel.getRowData());
+    public void confirmAccount(Account acc) {
+        accountSession.confirmAccount(acc);
         initModel();
     }
 
-    public String editAccount() {
-        return accountSession.getAccountToEdit(accountsDataModel.getRowData());
+    public String editAccount(Account acc) {
+        return accountSession.getAccountToEdit(acc);
     }
 
-    public String beginChangePassword() {
-        return accountSession.beginChangePassword(accountsDataModel.getRowData());
+    public String createMnote(Account account) {
+        mnoteSession.setNoteAccount(account);
+        return "createMnote";
     }
-    public String createEnote() {
-        return accountSession.createEnote(accountsDataModel.getRowData());
+
+    public String mnoteList(Account account) {
+        mnoteSession.setSearchedNotesAccount(account);
+        return "mnoteList";
     }
-    public String createMnote() {
-        return accountSession.createMnote(accountsDataModel.getRowData());
+
+    public boolean renderCreateMnote(Account account) {
+        Long currentYear = (long) Calendar.getInstance().get(Calendar.YEAR);
+        return mnoteSession.isNoted(account, currentYear);
     }
-    
+
+    public boolean disabledCreateMnote(Account account) {
+        return enoteSession.renderEnote(account);
+    }
+
 }

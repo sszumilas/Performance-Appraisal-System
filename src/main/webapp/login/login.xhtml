@@ -5,11 +5,11 @@
                 template="../templates/MainTemplate.xhtml">
 
     <ui:define name="top">
-        
+        <p>${msg["main.login"]}</p>
     </ui:define>
 
     <ui:define name="left">
-        
+        <ui:include src="../templates/menu.xhtml" />
     </ui:define>
 
     <ui:define name="content">
@@ -21,9 +21,12 @@
                 <input type="password" name= "j_password" />
             </p>
             <p>
-                <input type="submit" value="${msg['action.login']}" />
+                <input type="submit" value="${msg['action.submit']}" action="logged" immediate="true" />
             </p>
         </form>
+            <br/><br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <p align="right"><img src="../resources/css/Untit2.png"  width="600" height="60" alt="Untit"/></p>
     </ui:define>
 
 </ui:composition>

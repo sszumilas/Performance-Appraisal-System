@@ -2,50 +2,59 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:h="http://java.sun.com/jsf/html">
 
 
-    <h:outputLabel value="#{msg['mnote.achievements']}" for="achievements" />
-    <h:outputText id="achievements" value="#{pageBean.mnote.achievements}" title="#{msg['mnote.achievements']}" />
+        <h:outputLabel value="#{msg['mnote.achievements']}" for="achievements" />
+    <h:outputText style="background:aliceblue border-box" id="achievements" value="#{pageBean.mnote.achievements}" title="#{msg['mnote.achievements']}" >
+    </h:outputText>
     <h:message for="achievements" />
 
-
-
     <h:outputLabel value="#{msg['mnote.aspiration']}" for="aspiration" />
-    <h:outputText id="aspiration" value="#{pageBean.mnote.aspiration}" title="#{msg['enote.aspiration']}" >
+    <h:outputText style="background:aliceblue border-box" id="aspiration" value="#{pageBean.mnote.aspiration}" title="#{msg['mnote.aspiration']}" >
     </h:outputText>
     <h:message for="aspiration" />
 
     <h:outputLabel value="#{msg['mnote.improvement']}" for="improvement" />
-    <h:outputText id="improvement" value="#{pageBean.enote.improvement}" title="#msg['mnote.improvement']}"> 
+    <h:outputText style="background:aliceblue border-box" id="improvement" value="#{pageBean.mnote.improvement}" title="#{msg['mnote.improvement']}"> 
     </h:outputText>
     <h:message for="improvement" />
     
-    <h:outputLabel value="#{msg['mnote.mobility']}" for="mobility" />
-    <h:outputText id="mobility" value="#{pageBean.mnote.mobility}" title="#msg['mnote.mobility']}"> 
-    </h:outputText>
-    <h:message for="mobility" />
-    
-    <h:outputLabel value="#{msg['mnote.nactivity']}" for="nactivity" />
-    <h:outputText id="nactivity" value="#{pageBean.mnote.nactivity}" title="#msg['mnote.nactivity']}"> 
+    <h:outputLabel value="#{msg['enote.nactivity']}" for="nactivity" />
+    <h:outputText style="background:aliceblue border-box" id="nactivity" value="#{pageBean.mnote.nactivity}" title="#{msg['enote.nactivity']}"> 
     </h:outputText>
     <h:message for="nactivity" />
     
+    <h:outputLabel value="#{msg['mnote.note']} *" for="note" />
+    <h:outputText style="background:aliceblue border-box" id="note" value="#{pageBean.mnote.note}" title="#{msg['mnote.note']}"> 
+    </h:outputText>
+    <h:message for="note" />
+    
+    <h:outputLabel value="#{msg['mnote.noteA']} *" for="noteA" />
+    <h:outputText style="background:aliceblue border-box" id="noteA" value="#{pageBean.mnote.noteA}" title="#{msg['mnote.noteA']}"> 
+    </h:outputText>
+    <h:message for="noteA" />
+    
+    <h:outputLabel value="#{msg['mnote.potent']}" for="potent" />
+    <h:outputText style="background:aliceblue border-box" id="potent" value="#{pageBean.mnote.potent}" title="#{msg['mnote.potent']}"> 
+    </h:outputText>
+    <h:message for="potent" />
+    
     <h:outputLabel value="#{msg['mnote.promises']}" for="promises" />
-    <h:outputText id="promises" value="#{pageBean.mnote.promises}" title="#msg['mnote.promises']}"> 
+    <h:outputText style="background:aliceblue border-box" id="promises" value="#{pageBean.mnote.promises}" title="#{msg['mnote.promises']}"> 
     </h:outputText>
     <h:message for="promises" />
-
-
-
-
+    
+    <h:outputLabel value="#{msg['mnote.summary']} *" for="summary" />
+    <h:outputText style="background:aliceblue border-box" id="summary" value="#{pageBean.mnote.summary}" title="#{msg['mnote.summary']}"> 
+    </h:outputText>
+    <h:message for="summary" />
+    
     <h:outputLabel value="#{msg['mnote.target']}" for="target" />
-    <h:outputText id="target" value="#{pageBean.mnote.target}" title="#msg['mnote.target']}"> 
+    <h:outputText style="background:aliceblue border-box" id="target" value="#{pageBean.mnote.target}" title="#{msg['mnote.target']}"> 
     </h:outputText>
     <h:message for="target" />
-
-
-
-
 </ui:composition>
+
+
+
