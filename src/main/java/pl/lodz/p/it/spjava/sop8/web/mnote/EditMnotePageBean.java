@@ -18,6 +18,7 @@ public class EditMnotePageBean {
   @ManagedProperty(value="#{mnoteSession}")
     private MnoteSession mnoteSession;
   
+    private Map<Short, String> mobilityValues = new HashMap<>();
     private Map<Short, String> noteValues = new HashMap<>();
     private Map<Short, String> noteAValues = new HashMap<>();
     private Map<Short, String> potentValues = new HashMap<>();
@@ -70,4 +71,7 @@ public class EditMnotePageBean {
     public Map<Short, String> getPotentValues() {
         return potentValues;
 }
+        public Map<Short, String> getMobilityValues() {        
+        return mobilityValues;
+    }
 }

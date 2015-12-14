@@ -51,11 +51,11 @@
                 <h:column id="actions">
                     <f:facet name="header">${msg['general.actions']}</f:facet>
                     <h:commandButton action="#{accountsListPageBean.editAccount(row)}" value="${msg['action.edit']}"/>
-                    <h:commandButton action="#{accountsListPageBean.confirmAccount(row)}" value="${msg['action.confirm']}" rendered="#{not row.active  and request.isUserInRole('Admin')}"/>
+                    <h:commandButton action="#{accountsListPageBean.confirmAccount(row)}" value="${msg['action.confirm']}" rendered="#{not row.active and not row.confirmed and request.isUserInRole('Admin')}"/>
                     <h:commandButton action="#{accountsListPageBean.activateAccount(row)}" value="${msg['action.activate']}" rendered="#{not row.active  and request.isUserInRole('Admin') and row.login!=accountsListPageBean.userAccount.login}"/>
                     <h:commandButton action="#{accountsListPageBean.deactivateAccount(row)}" value="${msg['action.deactivate']}" rendered="#{row.active  and request.isUserInRole('Admin') and row.login!=accountsListPageBean.userAccount.login}"/>
-                    <h:commandButton action="#{accountsListPageBean.createMnote(row)}" value="${msg['action.createMnote']}" disabled="#{accountsListPageBean.disabledCreateMnote(row)}" rendered="#{row.active and accountsListPageBean.renderCreateMnote(row) and row.login!=accountsListPageBean.userAccount.login}"/>
-                    <h:commandButton action="#{accountsListPageBean.mnoteList(row)}" value="${msg['action.listMnote']}" rendered="#{row.active and row.login!=accountsListPageBean.userAccount.login}"/>
+                    <h:commandButton action="#{accountsListPageBean.createMnote(row)}" value="${msg['action.createMnote']}" disabled="#{accountsListPageBean.disabledCreateMnote(row)}" rendered="#{row.active and accountsListPageBean.renderCreateMnote(row) and row.login!=accountsListPageBean.userAccount.login and request.isUserInRole('Manager')}"/>
+                    <h:commandButton action="#{accountsListPageBean.mnoteList(row)}" value="${msg['action.listMnote']}" rendered="#{row.active and row.login!=accountsListPageBean.userAccount.login and request.isUserInRole('Manager')}"/>
 
                 </h:column>
 

@@ -21,8 +21,6 @@
     float: left;
    
     background:  rgba(255,255,255,0.5);
-/*background-color: #327dff;*/
-/*    color: #ece3a5;*/
     padding: 5px;
     width: 350px;
     min-height: 480px;
@@ -42,12 +40,6 @@
     background-attachment: fixed;
     background-image: url(chess.png)
     
-/*    float: right;
-    
-    background-image:  url("https://31.media.tumblr.com/3e3054b3fd9aed599ddd605d1abad067/tumblr_inline_myugv8tsoz1s523bx.jpg")*/
-/*    background-color: #ece3a5;*/
-/*    padding: 5px;
-    width: 150px;*/
 }
 
 .center_content {
@@ -64,8 +56,6 @@
     margin-left: 170px;
     min-height: 480px;
     
-/*    opacity: 33%*/
-/*    ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";*/
 }
 
 .right_content {

@@ -26,7 +26,7 @@
 
                     <h:column id="actions">
                         <f:facet name="header">${msg['general.actions']}</f:facet>
-                        <h:commandButton action="#{mnotesListPageBean.edit(row)}" value="${msg['action.edit']}" disabled="#{mnotesListPageBean.disabled(row)}"/>
+                        <h:commandButton action="#{mnotesListPageBean.edit(row)}" value="${msg['action.edit']}" disabled="#{mnotesListPageBean.disabled(row)}" />
                         <h:commandButton action="#{mnotesListPageBean.viewMnote(row)}" value="${msg['action.view']}"/>
                         <h:commandButton action="#{mnotesListPageBean.report(row)}" value="${msg['action.summary']}"/>
                     </h:column>
