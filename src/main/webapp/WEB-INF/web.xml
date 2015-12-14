@@ -10,8 +10,6 @@
         <param-value>i18n.messages</param-value>
     </context-param>
     <context-param>
-        <!--        Ustawienie tego parametru na wartość true powoduje, że JSF będzie traktować puste pola formularza
-        jako wartości null, nie zaś puste napisy ("")-->
         <param-name>
             javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL
         </param-name>
@@ -138,16 +136,7 @@
     </error-page>
     <welcome-file-list>
         <welcome-file>main/index.xhtml</welcome-file>
-        <!--        <welcome-file>index.html</welcome-file>-->
     </welcome-file-list>
-    <!--<context-param>-->
-        <!--        Ustawienie tego parametru na wartość true powoduje, że JSF będzie traktować puste pola formularza
-        jako wartości null, nie zaś puste napisy ("")-->
-<!--        <param-name>
-            javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL
-        </param-name>
-        <param-value>true</param-value>
-    </context-param>-->
     
 </web-app>
 

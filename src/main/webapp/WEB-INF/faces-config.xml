@@ -3,12 +3,6 @@
               xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-<!--    <application>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-    </application>-->
     
     <application>
         <locale-config>
@@ -46,15 +40,6 @@
         </navigation-case>
 
 
-
-
-        <!--
-                <navigation-case>
-                    <from-outcome>loging</from-outcome>
-                    <to-view-id>/login/login.xhtml</to-view-id>
-                    <redirect />
-                </navigation-case>        
-        -->        
         <navigation-case>
             <from-outcome>j_security_check</from-outcome>
             <to-view-id>/main/index.xhtml</to-view-id>

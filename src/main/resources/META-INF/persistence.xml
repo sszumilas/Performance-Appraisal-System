@@ -14,7 +14,6 @@
       <property name="eclipselink.canonicalmodel.subpackage" value="SOPJavaDB_PU"/>
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.ddl-generation" value="none"/>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
 </persistence>

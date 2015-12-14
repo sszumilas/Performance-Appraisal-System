@@ -15,17 +15,17 @@ public class LoggingInterceptor {
 	
 	@AroundInvoke
     public Object additionalInvokeForMethod(InvocationContext invocation) throws Exception {
-        StringBuilder sb = new StringBuilder("Wywołanie metody biznesowej: ");
+        StringBuilder sb = new StringBuilder("Business method induction: ");
         sb.append(invocation.getTarget().getClass().getName()).append('.').append(invocation.getMethod().getName());
-        sb.append(" z tożsamością użytkownika: " + sessionContext.getCallerPrincipal().getName());
+        sb.append(" with user identity: " + sessionContext.getCallerPrincipal().getName());
         try {
             Object[] parameters = invocation.getParameters();
             if (null != parameters) {
                 for (Object param : parameters) {
                     if (param != null) {
-                        sb.append(" z parametrem typu:" + param.getClass().getName() + " o wartości" + param.toString());
+                        sb.append(" with parameter type:" + param.getClass().getName() + " with value" + param.toString());
                     } else {
-                        sb.append(" z parametrem null");
+                        sb.append(" with null parameter");
                     }
                 }
             }
@@ -33,15 +33,15 @@ public class LoggingInterceptor {
             Object result = invocation.proceed();
 
             if (result != null) {
-                sb.append(" zwrócono obiekt typu: " + result.getClass().getName() + " o wartości: " + result.toString());
+                sb.append(" returned object type: " + result.getClass().getName() + " with value: " + result.toString());
             } else {
-                sb.append(" zwrócono wartość null");
+                sb.append(" returned null value");
             }
 
             return result;
         } catch (Exception ex) {
-            sb.append(" wystapil wyjatek typu: " + ex.getClass().getName());
-            throw ex; //ponowne zgloszenie wyjatku
+            sb.append(" occured exception type: " + ex.getClass().getName());
+            throw ex;
         } finally {
             Logger.getGlobal().log(Level.INFO, sb.toString());
         }

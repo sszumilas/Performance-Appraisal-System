@@ -26,17 +26,17 @@
     <h:message for="nactivity" />
     
     <h:outputLabel value="#{msg['mnote.note']} *" for="note" />
-    <h:outputText style="background:aliceblue border-box" id="note" value="#{pageBean.mnote.note}" title="#{msg['mnote.note']}"> 
+    <h:outputText style="background:aliceblue border-box" id="note" value="#{pageBean.noteValues[pageBean.mnote.note]}" title="#{msg['mnote.note']}"> 
     </h:outputText>
     <h:message for="note" />
     
     <h:outputLabel value="#{msg['mnote.noteA']} *" for="noteA" />
-    <h:outputText style="background:aliceblue border-box" id="noteA" value="#{pageBean.mnote.noteA}" title="#{msg['mnote.noteA']}"> 
+    <h:outputText style="background:aliceblue border-box" id="noteA" value="#{pageBean.noteAValues[pageBean.mnote.noteA]}" title="#{msg['mnote.noteA']}"> 
     </h:outputText>
     <h:message for="noteA" />
     
     <h:outputLabel value="#{msg['mnote.potent']}" for="potent" />
-    <h:outputText style="background:aliceblue border-box" id="potent" value="#{pageBean.mnote.potent}" title="#{msg['mnote.potent']}"> 
+    <h:outputText style="background:aliceblue border-box" id="potent" value="#{pageBean.potentValues[pageBean.mnote.potent]}" title="#{msg['mnote.potent']}"> 
     </h:outputText>
     <h:message for="potent" />
     
